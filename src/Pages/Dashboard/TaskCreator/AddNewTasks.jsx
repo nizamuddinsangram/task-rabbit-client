@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { imageUpload } from "../../../../public/utils";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
@@ -21,6 +22,13 @@ const AddNewTasks = () => {
       creator_name: user?.displayName,
       current_time: new Date().toISOString(),
     };
+    // total cost calculate and throw a message to the user
+    const total_cost = task_quantity * payable_amount;
+    if (total_cost > 50) {
+      console.log("hi");
+      toast.error("Not available Coin. Purchase Coin ");
+      return;
+    }
 
     try {
       const image_url = await imageUpload(image);
