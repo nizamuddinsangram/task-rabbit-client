@@ -1,7 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
+import AdminHome from "../Pages/Dashboard/Admin/AdminHome";
+import ManageTask from "../Pages/Dashboard/Admin/ManageTask";
+import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import AddNewTasks from "../Pages/Dashboard/TaskCreator/AddNewTasks";
+import MyTasks from "../Pages/Dashboard/TaskCreator/MyTasks";
 import TaskCreatorHome from "../Pages/Dashboard/TaskCreator/TaskCreatorHome";
 import MySubmissions from "../Pages/Dashboard/Worker/MySubmissions";
 import TaskList from "../Pages/Dashboard/Worker/TaskList";
@@ -56,7 +60,19 @@ const router = createBrowserRouter([
       },
       {
         path: "myTasks",
-        element: <AddNewTasks />,
+        element: <MyTasks />,
+      },
+      {
+        path: "adminHome",
+        element: <AdminHome />,
+      },
+      {
+        path: "manageUsers",
+        element: <ManageUsers />,
+      },
+      {
+        path: "manageTasks",
+        element: <ManageTask />,
       },
     ],
   },

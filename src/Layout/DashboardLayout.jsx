@@ -1,6 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
+import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
+  const [role] = useRole();
+  console.log(role, "dashboard layout");
   return (
     <>
       <div className="bg-lime-500 py-6 flex items-center justify-center">
@@ -28,6 +31,15 @@ const DashboardLayout = () => {
           </Link>
           <Link className="w-full btn btn-sm mt-4 " to="/dashboard/myTasks">
             My Tasks
+          </Link>
+          <Link className="w-full btn btn-sm mt-4 " to="/dashboard/adminHome">
+            Admin Home
+          </Link>
+          <Link className="w-full btn btn-sm mt-4 " to="/dashboard/manageUsers">
+            Manage Users
+          </Link>
+          <Link className="w-full btn btn-sm mt-4 " to="/dashboard/manageTasks">
+            Manage Tasks
           </Link>
         </div>
         <div className="flex-1 p-8 bg-sky-100">
