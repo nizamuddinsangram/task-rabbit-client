@@ -1,9 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
+import AddNewTasks from "../Pages/Dashboard/TaskCreator/AddNewTasks";
+import TaskCreatorHome from "../Pages/Dashboard/TaskCreator/TaskCreatorHome";
+import MySubmissions from "../Pages/Dashboard/Worker/MySubmissions";
+import TaskList from "../Pages/Dashboard/Worker/TaskList";
+import WorkerHome from "../Pages/Dashboard/Worker/WorkerHome";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
-import PrivateRoute from "./PribateRoute";
 
 const router = createBrowserRouter([
   {
@@ -23,13 +28,35 @@ const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <DashboardLayout />,
+    children: [
       {
-        path: "/dashboard",
-        element: (
-          <PrivateRoute>
-            <p>dashboard</p>
-          </PrivateRoute>
-        ),
+        path: "workerHome",
+        element: <WorkerHome />,
+      },
+      {
+        path: "taskList",
+        element: <TaskList />,
+      },
+      {
+        path: "mySubmission",
+        element: <MySubmissions />,
+      },
+      {
+        path: "taskCreator",
+        element: <TaskCreatorHome />,
+      },
+      {
+        path: "addNewTask",
+        element: <AddNewTasks />,
+      },
+      {
+        path: "myTasks",
+        element: <AddNewTasks />,
       },
     ],
   },

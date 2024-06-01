@@ -71,7 +71,7 @@ const Navbar = () => {
             <Link to="/watch">Watch Video</Link>
           </li>
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/dashboard/workerHome">Dashboard</Link>
           </li>
         </ul>
       </div>

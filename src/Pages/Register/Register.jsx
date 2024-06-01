@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,14 +17,20 @@ const Register = () => {
     const password = form.password.value;
     const image = form.image.files[0];
     const role = form.role.value;
-    console.log(name, role, email, password, image);
+
     try {
       //upload image and get image url
       const image_url = await imageUpload(image);
-      // console.log(image_url);
+      const user = {
+        name,
+        email,
+        role,
+        image_url,
+      };
+      const { data } = await axios.post("http://localhost:8000/register", user);
+      console.log(data);
       // user registration
-      const result = await createUser(email, password);
-      // console.log(result);
+      await createUser(email, password);
       // update user name display photo
       await updateUserProfile(name, image_url);
       navigate(location.state ? location.state : "/");
@@ -33,7 +40,19 @@ const Register = () => {
   };
   const handleGoogleSignIn = async () => {
     try {
-      await googleSignIn();
+      const currentUser = await googleSignIn();
+      const user = currentUser.user;
+      const savedUser = {
+        name: user.displayName,
+        email: user.email,
+        image_url: user.photoURL,
+      };
+      // console.log(savedUser);
+      const { data } = await axios.post(
+        "http://localhost:8000/google-login",
+        savedUser
+      );
+      console.log(data);
       navigate(location.state ? location.state : "/");
     } catch (err) {
       console.log(err);

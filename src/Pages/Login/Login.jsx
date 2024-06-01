@@ -1,3 +1,4 @@
+import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
@@ -23,7 +24,19 @@ const Login = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-      await googleSignIn();
+      const currentUser = await googleSignIn();
+      const user = currentUser.user;
+      const savedUser = {
+        name: user.displayName,
+        email: user.email,
+        image_url: user.photoURL,
+      };
+      // console.log(savedUser);
+      const { data } = await axios.post(
+        "http://localhost:8000/google-login",
+        savedUser
+      );
+      console.log(data);
       navigate(location.state ? location.state : "/");
     } catch (err) {
       console.log(err);
