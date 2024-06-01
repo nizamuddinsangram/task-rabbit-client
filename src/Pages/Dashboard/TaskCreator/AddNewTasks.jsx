@@ -23,7 +23,8 @@ const AddNewTasks = () => {
       current_time: new Date().toISOString(),
     };
     // total cost calculate and throw a message to the user
-    const total_cost = task_quantity * payable_amount;
+    const total_cost = parseFloat(task_quantity * payable_amount);
+    console.log(total_cost);
     if (total_cost > 50) {
       console.log("hi");
       toast.error("Not available Coin. Purchase Coin ");
@@ -45,6 +46,12 @@ const AddNewTasks = () => {
       //post tasks data to the server
       const { data } = await axiosCommon.post(`/tasks`, addTasks);
       console.log(data);
+      //reduce coins for database
+      const reduce_coins = await axiosCommon.patch(
+        `/user/reduce-coins/${user?.email}`,
+        { total_cost }
+      );
+      console.log(reduce_coins.data, "reduce-coins");
     } catch (err) {
       console.log(err);
     }
