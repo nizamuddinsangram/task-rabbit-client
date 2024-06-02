@@ -2,8 +2,11 @@ import toast from "react-hot-toast";
 import { imageUpload } from "../../../../public/utils";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import useRole from "../../../hooks/useRole";
 
 const AddNewTasks = () => {
+  const [data, refetch] = useRole();
+  console.log("add new taska component", data.coins);
   const axiosCommon = useAxiosCommon();
   const { user } = useAuth();
   const handleSubmit = async (e) => {
@@ -24,9 +27,8 @@ const AddNewTasks = () => {
     };
     // total cost calculate and throw a message to the user
     const total_cost = parseFloat(task_quantity * payable_amount);
-    console.log(total_cost);
-    if (total_cost > 50) {
-      console.log("hi");
+    console.log(typeof total_cost);
+    if (total_cost > data?.coins) {
       toast.error("Not available Coin. Purchase Coin ");
       return;
     }
@@ -42,16 +44,24 @@ const AddNewTasks = () => {
         submission_info,
         task_creator,
         image_url,
+        total_cost,
       };
+      //test code
+      const test = await axiosCommon.post(`/tasks/${user?.email}`, addTasks);
+      if (test.data.insertDoc.insertedId) {
+        refetch();
+        toast.success("added successfully");
+      }
+      console.log(test.data.insertDoc.insertedId);
       //post tasks data to the server
-      const { data } = await axiosCommon.post(`/tasks`, addTasks);
-      console.log(data);
-      //reduce coins for database
-      const reduce_coins = await axiosCommon.patch(
-        `/user/reduce-coins/${user?.email}`,
-        { total_cost }
-      );
-      console.log(reduce_coins.data, "reduce-coins");
+      // const { data } = await axiosCommon.post(`/tasks`, addTasks);
+      // console.log(data);
+      // //reduce coins for database
+      // const reduce_coins = await axiosCommon.patch(
+      //   `/user/reduce-coins/${user?.email}`,
+      //   { total_cost }
+      // );
+      // console.log(reduce_coins.data, "reduce-coins");
     } catch (err) {
       console.log(err);
     }

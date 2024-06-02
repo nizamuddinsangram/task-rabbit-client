@@ -13,6 +13,7 @@ import WorkerHome from "../Pages/Dashboard/Worker/WorkerHome";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import MyTaskUpdate from "../components/Dashboard/TaskCreator/MyTaskUpdate";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "manageTasks",
         element: <ManageTask />,
+      },
+      {
+        path: "myTaskUpdate/:taskId",
+        element: <MyTaskUpdate />,
       },
     ],
   },

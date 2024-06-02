@@ -2,8 +2,10 @@ import { Link, Outlet } from "react-router-dom";
 import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
-  const [data] = useRole();
+  const [data, , refetch] = useRole();
+
   const role = data?.role;
+  console.log("dash board ", role);
   // console.log(data, role);
   return (
     <>

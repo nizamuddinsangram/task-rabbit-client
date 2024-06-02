@@ -5,16 +5,20 @@ import useAxiosCommon from "./useAxiosCommon";
 const useRole = () => {
   const axiosCommon = useAxiosCommon();
   const { user, loading } = useAuth();
-  const { data = [], isLoading } = useQuery({
+  const {
+    data = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["role", user?.email],
     enabled: !loading || !!user?.email,
     queryFn: async () => {
       const { data } = await axiosCommon(`/user/${user?.email}`);
-      // console.log(data.role);
+      console.log(data);
       return data;
     },
   });
-  return [data, isLoading];
+  return [data, refetch, isLoading];
 };
 
 export default useRole;
