@@ -3,8 +3,11 @@ import Swal from "sweetalert2";
 import AddNewTasksRow from "../../../components/Dashboard/AddNewTasksRow";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import useRole from "../../../hooks/useRole";
 
 const MyTasks = () => {
+  const [, refetchRole] = useRole();
+
   const { user, loading } = useAuth();
   const axiosCommon = useAxiosCommon();
   const { data: newTasks = [], refetch } = useQuery({
@@ -32,6 +35,7 @@ const MyTasks = () => {
           console.log(data);
           if (data.result.deletedCount > 0) {
             refetch();
+            refetchRole();
             Swal.fire({
               title: "Deleted!",
               text: "Your file has been deleted.",

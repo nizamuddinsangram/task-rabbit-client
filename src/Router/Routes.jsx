@@ -6,6 +6,7 @@ import ManageTask from "../Pages/Dashboard/Admin/ManageTask";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import AddNewTasks from "../Pages/Dashboard/TaskCreator/AddNewTasks";
 import MyTasks from "../Pages/Dashboard/TaskCreator/MyTasks";
+import PurchaseCoin from "../Pages/Dashboard/TaskCreator/PurchaseCoin";
 import TaskCreatorHome from "../Pages/Dashboard/TaskCreator/TaskCreatorHome";
 import MySubmissions from "../Pages/Dashboard/Worker/MySubmissions";
 import TaskList from "../Pages/Dashboard/Worker/TaskList";
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: "myTaskUpdate/:taskId",
         element: <MyTaskUpdate />,
+      },
+      {
+        path: "purchaseCoin",
+        element: <PurchaseCoin />,
       },
     ],
   },

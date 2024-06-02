@@ -10,7 +10,7 @@ const DashboardLayout = () => {
   return (
     <>
       <div className="bg-lime-500 py-6 flex items-center justify-between px-10">
-        <p>my website my wish </p>
+        <Link to="/">my website my wish </Link>
         <p>coins {data?.coins}</p>
       </div>
       <div className="flex">
@@ -53,6 +53,12 @@ const DashboardLayout = () => {
               </Link>
               <Link className="w-full btn btn-sm mt-4 " to="/dashboard/myTasks">
                 My Tasks
+              </Link>
+              <Link
+                className="w-full btn btn-sm mt-4 "
+                to="/dashboard/purchaseCoin"
+              >
+                Purchase Coin
               </Link>
             </>
           )}
