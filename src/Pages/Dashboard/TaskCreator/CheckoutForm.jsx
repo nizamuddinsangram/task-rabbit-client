@@ -75,13 +75,14 @@ const CheckoutForm = ({ amount }) => {
         setTransactionId(paymentIntent.id);
         //post request start
         const { data } = await axiosCommon.post("/payment-info", {
-          email: user.email,
+          email: user?.email,
+          name: user?.displayName,
           amount: amount,
           transactionId: paymentIntent.id,
         });
         if (data.updatedResult.modifiedCount > 0) {
           refetch();
-          console.log(data.updatedResult.modifiedCount);
+          //   console.log(data.updatedResult.modifiedCount);
         }
 
         //post request end

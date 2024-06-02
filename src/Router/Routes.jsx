@@ -6,6 +6,7 @@ import ManageTask from "../Pages/Dashboard/Admin/ManageTask";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers";
 import AddNewTasks from "../Pages/Dashboard/TaskCreator/AddNewTasks";
 import MyTasks from "../Pages/Dashboard/TaskCreator/MyTasks";
+import PaymentHistory from "../Pages/Dashboard/TaskCreator/PaymentHistory";
 import PaymentPage from "../Pages/Dashboard/TaskCreator/PaymentPage";
 import PurchaseCoin from "../Pages/Dashboard/TaskCreator/PurchaseCoin";
 import TaskCreatorHome from "../Pages/Dashboard/TaskCreator/TaskCreatorHome";
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
       {
         path: "payment/:amount",
         element: <PaymentPage />,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory />,
       },
     ],
   },

@@ -60,6 +60,12 @@ const DashboardLayout = () => {
               >
                 Purchase Coin
               </Link>
+              <Link
+                className="w-full btn btn-sm mt-4 "
+                to="/dashboard/paymentHistory"
+              >
+                Payment History
+              </Link>
             </>
           )}
           {role === "admin" && (
