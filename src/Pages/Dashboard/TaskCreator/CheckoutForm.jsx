@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ amount }) => {
   const { user } = useAuth();
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
@@ -11,13 +11,13 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosCommon = useAxiosCommon();
-  const totalPrice = 110;
+  //   const totalPrice = 110;
   //find payment intent when this page loaded
   useEffect(() => {
-    if (totalPrice > 0) {
+    if (amount > 0) {
       const getData = async () => {
         const { data } = await axiosCommon.post("/create-payment-intent", {
-          price: totalPrice,
+          price: amount,
         });
         // setClientSecret(data.clientSecret);
         setClientSecret(data.clientSecret);
@@ -26,7 +26,7 @@ const CheckoutForm = () => {
       };
       getData();
     }
-  }, [axiosCommon]);
+  }, [axiosCommon, amount]);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
