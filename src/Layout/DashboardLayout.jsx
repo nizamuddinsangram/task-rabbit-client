@@ -5,7 +5,7 @@ const DashboardLayout = () => {
   const [data, , refetch] = useRole();
 
   const role = data?.role;
-  console.log("dash board ", role);
+  // console.log("dash board ", role);
   // console.log(data, role);
   return (
     <>
