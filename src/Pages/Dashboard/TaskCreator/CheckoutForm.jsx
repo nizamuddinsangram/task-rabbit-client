@@ -1,12 +1,17 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import useAuth from "../../../hooks/useAuth";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 
 const CheckoutForm = () => {
+  const { user } = useAuth();
+  const [error, setError] = useState("");
+  const [clientSecret, setClientSecret] = useState("");
+  const [transactionId, setTransactionId] = useState("");
   const stripe = useStripe();
   const elements = useElements();
   const axiosCommon = useAxiosCommon();
-  const totalPrice = 100;
+  const totalPrice = 110;
   //find payment intent when this page loaded
   useEffect(() => {
     if (totalPrice > 0) {
@@ -15,6 +20,7 @@ const CheckoutForm = () => {
           price: totalPrice,
         });
         // setClientSecret(data.clientSecret);
+        setClientSecret(data.clientSecret);
         console.log("came from backend", data.clientSecret);
         return data.clientSecret;
       };
@@ -42,8 +48,30 @@ const CheckoutForm = () => {
 
     if (error) {
       console.log("[error]", error);
+      setError(error.message);
     } else {
       console.log("[PaymentMethod]", paymentMethod);
+      setError("");
+    }
+    //confirm payment method
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            email: user?.email || "no email ",
+            name: user?.displayName || "no name",
+          },
+        },
+      });
+    if (confirmError) {
+      console.log("confirm error", confirmError);
+    } else {
+      console.log("payment intent", paymentIntent);
+      if (paymentIntent.status === "succeeded") {
+        console.log("taka keta nise", paymentIntent.id);
+        setTransactionId(paymentIntent.id);
+      }
     }
   };
   return (
@@ -64,9 +92,17 @@ const CheckoutForm = () => {
           },
         }}
       />
-      <button type="submit" disabled={!stripe}>
+      <button
+        className="btn bg-green-500 text-white btn-sm mt-3"
+        type="submit"
+        disabled={!stripe || !clientSecret}
+      >
         Pay
       </button>
+      <p className="text-red-600">{error}</p>
+      {transactionId && (
+        <p className="text-green-400">Your transaction id {transactionId}</p>
+      )}
     </form>
   );
 };
