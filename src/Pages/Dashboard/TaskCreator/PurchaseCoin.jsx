@@ -17,7 +17,7 @@ const PurchaseCoin = () => {
                 <h3 className="text-xl font-bold mb-2">{option.coins} Coins</h3>
                 <p className="text-lg mb-2">${option.price}</p>
                 <Link
-                  to={`/payment/${option.price}`}
+                  to={`/dashboard/payment/${option.price}`}
                   className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block"
                 >
                   Buy Now
