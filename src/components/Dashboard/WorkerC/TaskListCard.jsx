@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
+
 const TaskListCard = ({ task }) => {
-  console.log(task);
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <figure>
@@ -14,9 +15,12 @@ const TaskListCard = ({ task }) => {
         <p>{task.payable_amount}</p>
         <p>{task.task_quantity}</p>
         <div className="card-actions justify-end">
-          <button className="btn mb-2 btn-outline bg-slate-100 border-0 border-b-4 border-orange-400 mt-4">
+          <Link
+            to={`/dashboard/taskDetails/${task._id}`}
+            className="btn mb-2 btn-outline bg-slate-100 border-0 border-b-4 border-orange-400 mt-4"
+          >
             View Details
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ import TaskCreatorHome from "../Pages/Dashboard/TaskCreator/TaskCreatorHome";
 import MySubmissions from "../Pages/Dashboard/Worker/MySubmissions";
 import TaskList from "../Pages/Dashboard/Worker/TaskList";
 import WorkerHome from "../Pages/Dashboard/Worker/WorkerHome";
+import WorkerTaskDetails from "../Pages/Dashboard/Worker/WorkerTaskDetails";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: "paymentHistory",
         element: <PaymentHistory />,
+      },
+      {
+        path: "taskDetails/:taskId",
+        element: <WorkerTaskDetails />,
       },
     ],
   },
