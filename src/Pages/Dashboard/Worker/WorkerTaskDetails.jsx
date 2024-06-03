@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
@@ -30,9 +31,10 @@ const WorkerTaskDetails = () => {
     return <div>Error: {error.message}</div>;
   }
   console.log(task);
+
   const handleSubmission = async (e) => {
     e.preventDefault();
-    const submission_details = e.target.textarea.value;
+    const submission_details = e.target.elements.textarea?.value;
     console.log(submission_details);
     const taskSubmit = {
       submission_details,
@@ -51,7 +53,18 @@ const WorkerTaskDetails = () => {
       },
       status: "pending",
     };
-    console.log(taskSubmit);
+
+    // console.log(taskSubmit);
+    try {
+      const submission = await axiosCommon.post("/submission", taskSubmit);
+      console.log(submission.data);
+      if (submission.data.insertedId) {
+        toast.success("Add a new submission");
+      }
+      //   console.log("Submit");
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>
@@ -113,3 +126,25 @@ const WorkerTaskDetails = () => {
 };
 
 export default WorkerTaskDetails;
+
+//   const { mutateAsync } = useMutation({
+//   //     mutationFn: async (submitData) => {
+//   //       const { data } = await axiosCommon.post("/submit", submitData);
+//   //       return data;
+//   //     },
+//   //     onSuccess: () => {
+//   //       toast.success("submit my data ");
+//   //     },
+//   //   });
+//   const { mutateAsync } = useMutation({
+//     mutationFn: async (submitData) => {
+//       const { data } = await axiosCommon.post("/submit", submitData);
+//       return data;
+//     },
+//     onSuccess: () => {
+//       toast.success("Submission successful!");
+//     },
+//     onError: (err) => {
+//       toast.error(`Submission failed: ${err.message}`);
+//     },
+//   });
