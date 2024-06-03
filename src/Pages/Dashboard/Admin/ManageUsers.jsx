@@ -20,9 +20,23 @@ const ManageUsers = () => {
       refetch();
     }
   };
-  // const handleRoleChange = () => {
-  //   console.log("role change");
-  // };
+  const handleRoleChange = async (id, e) => {
+    console.log("role change", id);
+    try {
+      const newRole = e.target.value;
+      console.log(newRole);
+      const { data } = await axiosCommon.patch(`/worker/${id}`, {
+        role: newRole,
+      });
+      if (data.modifiedCount > 0) {
+        refetch();
+        toast.success("role wil be updated");
+      }
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <div className="container mx-auto p-8">
@@ -71,12 +85,12 @@ const ManageUsers = () => {
                   </td>
                   <td className="px-6 py-4 border-b border-gray-300 text-sm text-gray-700">
                     <select
-                      // value={user.role}
-                      // onChange={(e) => handleRoleChange(user._id, e)}
+                      value={user.role}
+                      onChange={(e) => handleRoleChange(user._id, e)}
                       className="border rounded p-2 text-gray-700 bg-white"
                     >
-                      <option value="Admin">Admin</option>
-                      <option value="Task-Creator">Task-Creator</option>
+                      <option value="admin">Admin</option>
+                      <option value="TaskCreator">Task-Creator</option>
                       <option value="Worker">Worker</option>
                     </select>
                   </td>
