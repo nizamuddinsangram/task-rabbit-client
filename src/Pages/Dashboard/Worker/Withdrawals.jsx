@@ -9,11 +9,11 @@ const Withdrawals = () => {
   const axiosCommon = useAxiosCommon();
   const [coinsToWithdraw, setCoinsToWithdraw] = useState("");
   const [withdrawAmount, setWithdrawAmount] = useState(0);
-  const [data] = useRole();
+  const [data, refetch] = useRole();
 
   const maxWithdrawAmount = data ? (data?.coins / 20).toFixed(2) : 0;
   //   console.log(maxWithdrawAmount);
-  const handleWithdrawal = (e) => {
+  const handleWithdrawal = async (e) => {
     e.preventDefault();
     const form = e.target;
     const withdraw_coin = parseInt(form.coinsToWithdraw.value);
@@ -33,6 +33,12 @@ const Withdrawals = () => {
       withdraw_time: new Date(),
     };
     console.log(withdrawalDollars);
+    const withdraw = await axiosCommon.post("/withdraw", withdrawalDollars);
+    console.log(withdraw.data);
+    if (withdraw.data.withdraw.insertedId) {
+      toast.success("withdraw successfully ");
+      refetch();
+    }
   };
   const handleCoinsChange = (e) => {
     const coins = parseInt(e.target.value);
