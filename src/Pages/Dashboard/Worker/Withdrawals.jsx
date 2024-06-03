@@ -19,12 +19,14 @@ const Withdrawals = () => {
     const withdraw_coin = parseInt(form.coinsToWithdraw.value);
     const withdraw_amount = parseFloat((withdraw_coin / 20).toFixed(2));
     const payment_system = form.paymentSystem.value;
+    const payment_number = form.accountNumber.value;
     if (withdraw_coin > data.coins) {
       toast.error("you have in supicient coins");
       return;
     }
     //send data to server
     const withdrawalDollars = {
+      payment_number,
       worker_email: user?.email,
       worker_name: user?.displayName,
       withdraw_coin: withdraw_coin,
@@ -36,7 +38,7 @@ const Withdrawals = () => {
     const withdraw = await axiosCommon.post("/withdraw", withdrawalDollars);
     console.log(withdraw.data);
     if (withdraw.data.withdraw.insertedId) {
-      toast.success("withdraw successfully ");
+      toast.success("please wait for admin confirmation");
       refetch();
     }
   };

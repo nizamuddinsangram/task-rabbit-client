@@ -1,5 +1,18 @@
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
+
 const WorkerHome = () => {
-  const submissions = [];
+  const axiosCommon = useAxiosCommon();
+  const { user } = useAuth();
+  const { data: approved } = useQuery({
+    queryKey: ["approved", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosCommon(`/submissionApprove/${user?.email}`);
+      return data;
+    },
+  });
+  console.log(approved);
   return (
     <>
       <div className="container mx-auto p-8">
@@ -21,13 +34,13 @@ const WorkerHome = () => {
               </tr>
             </thead>
             <tbody>
-              {submissions.map((submission) => (
+              {approved?.map((submission) => (
                 <tr key={submission._id} className="odd:bg-gray-50">
                   <td className="px-4 py-2 border border-gray-300">
                     {submission.task_title}
                   </td>
                   <td className="px-4 py-2 border border-gray-300">
-                    {submission.payable_amount}
+                    {submission.payment_amount}
                   </td>
                   <td className="px-4 py-2 border border-gray-300">
                     {submission.creator_name}
