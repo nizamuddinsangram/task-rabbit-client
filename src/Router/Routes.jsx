@@ -12,6 +12,7 @@ import PurchaseCoin from "../Pages/Dashboard/TaskCreator/PurchaseCoin";
 import TaskCreatorHome from "../Pages/Dashboard/TaskCreator/TaskCreatorHome";
 import MySubmissions from "../Pages/Dashboard/Worker/MySubmissions";
 import TaskList from "../Pages/Dashboard/Worker/TaskList";
+import Withdrawals from "../Pages/Dashboard/Worker/Withdrawals";
 import WorkerHome from "../Pages/Dashboard/Worker/WorkerHome";
 import WorkerTaskDetails from "../Pages/Dashboard/Worker/WorkerTaskDetails";
 import Home from "../Pages/Home/Home";
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
       {
         path: "taskDetails/:taskId",
         element: <WorkerTaskDetails />,
+      },
+      {
+        path: "withdrawals",
+        element: <Withdrawals />,
       },
     ],
   },

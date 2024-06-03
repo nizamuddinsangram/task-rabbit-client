@@ -35,6 +35,12 @@ const DashboardLayout = () => {
               >
                 My Submission
               </Link>
+              <Link
+                className="w-full btn btn-sm mt-4 "
+                to="/dashboard/withdrawals"
+              >
+                WithDrawals
+              </Link>
             </>
           )}
           {role === "TaskCreator" && (
