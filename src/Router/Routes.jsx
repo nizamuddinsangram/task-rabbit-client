@@ -19,6 +19,8 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import MyTaskUpdate from "../components/Dashboard/TaskCreator/MyTaskUpdate";
+import AdminRoute from "./AdminRoute";
+import PrivateRoute from "./PribateRoute";
 
 const router = createBrowserRouter([
   {
@@ -70,7 +72,13 @@ const router = createBrowserRouter([
       },
       {
         path: "adminHome",
-        element: <AdminHome />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AdminHome />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageUsers",

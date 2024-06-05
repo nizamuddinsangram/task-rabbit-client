@@ -4,9 +4,13 @@ import useAuth from "../../../../hooks/useAuth";
 import useAxiosCommon from "../../../../hooks/useAxiosCommon";
 
 const TaskCreatorHome = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const axiosCommon = useAxiosCommon();
-  const { data: taskReviews = [], refetch } = useQuery({
+  const {
+    data: taskReviews = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["taskReview"],
     queryFn: async () => {
       const { data } = await axiosCommon(`/pendingSubmissions/${user?.email}`);
@@ -45,6 +49,9 @@ const TaskCreatorHome = () => {
       toast.success("reject the request");
     }
   };
+  if (isLoading || loading) {
+    return <p>alhamdulillah </p>;
+  }
   return (
     <>
       <div className="container mx-auto p-8">

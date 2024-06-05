@@ -1,13 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const AdminHome = () => {
+  const axiosSecure = useAxiosSecure();
   const axiosCommon = useAxiosCommon();
   const { data: withdrawRequests, refetch } = useQuery({
     queryKey: ["confirmWithdraw"],
     queryFn: async () => {
-      const { data } = await axiosCommon("/withDrawConfirmAdmin");
+      const { data } = await axiosSecure("/withDrawConfirmAdmin");
       return data;
     },
   });
