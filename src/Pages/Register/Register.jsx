@@ -33,6 +33,7 @@ const Register = () => {
       await createUser(email, password);
       // update user name display photo
       await updateUserProfile(name, image_url);
+
       navigate(location.state ? location.state : "/");
     } catch (err) {
       console.log(err);

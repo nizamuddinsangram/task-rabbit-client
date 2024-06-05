@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosCommon from "../../../../hooks/useAxiosCommon";
 
 const TaskCreatorHome = () => {
   const { user } = useAuth();
   const axiosCommon = useAxiosCommon();
-  const { data: taskReviews, refetch } = useQuery({
+  const { data: taskReviews = [], refetch } = useQuery({
     queryKey: ["taskReview"],
     queryFn: async () => {
       const { data } = await axiosCommon(`/pendingSubmissions/${user?.email}`);
@@ -13,13 +14,36 @@ const TaskCreatorHome = () => {
       return data;
     },
   });
-  console.log("task creation home", taskReviews);
+  // console.log("task creation home", taskReviews);
 
-  const handleApprove = () => {
-    console.log("approve");
+  const handleApprove = async (id, payment_amount, worker_email) => {
+    console.log(id, payment_amount, worker_email);
+    const approveData = {
+      status: "approve",
+      payment_amount,
+      worker_email,
+    };
+    try {
+      const approve = await axiosCommon.patch(`/approve/${id}`, approveData);
+      console.log(approve.data);
+      if (approve.data.modifiedCount > 0) {
+        refetch();
+        toast.success("status will be updated");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
-  const handleReject = () => {
+  const handleReject = async (id) => {
     console.log("reject");
+    const { data } = await axiosCommon.patch(`/approve/${id}`, {
+      status: "reject",
+    });
+    console.log(data);
+    if (data.modifiedCount > 0) {
+      refetch();
+      toast.success("reject the request");
+    }
   };
   return (
     <>
@@ -70,7 +94,13 @@ const TaskCreatorHome = () => {
                       <div>
                         <button
                           className="bg-green-500 hover:bg-green-600 text-white py-1 px-4 rounded-full mr-2"
-                          onClick={() => handleApprove(submission._id)}
+                          onClick={() =>
+                            handleApprove(
+                              submission._id,
+                              submission.payment_amount,
+                              submission.workerInfo.worker_email
+                            )
+                          }
                         >
                           Approve
                         </button>
