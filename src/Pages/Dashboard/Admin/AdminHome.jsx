@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import AdminHomeStates from "./AdminHomeStates";
 
 const AdminHome = () => {
   const axiosSecure = useAxiosSecure();
@@ -25,6 +26,7 @@ const AdminHome = () => {
   };
   return (
     <>
+      <AdminHomeStates />
       <div className="container mx-auto p-8">
         <h2 className="text-3xl font-semibold mb-6 text-center">
           Withdraw Requests

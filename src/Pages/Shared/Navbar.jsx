@@ -82,11 +82,22 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       isActive
                         ? "bg-[#FFBF00] text-[#005149] rounded-md px-2 py-1"
-                        : "hover:bg-[#FFC107] hover:text-[#005149] rounded-md px-2 py-1 transition-colors"
+                        : "btn btn-sm bg-[#005149] text-white rounded-lg hover:bg-[#FFC107]   px-2 py-1 transition-colors"
                     }
                   >
                     Dashboard
                   </NavLink>
+                </li>
+                <li className="btn btn-sm bg-[#005149] text-white rounded-lg hover:bg-[#FFC107]   px-2 py-1 transition-colors">
+                  Coins
+                </li>
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="btn btn-sm bg-[#005149] text-white rounded-lg hover:bg-[#FFC107] transition-colors"
+                  >
+                    LogOut
+                  </button>
                 </li>
               </>
             )}
@@ -98,9 +109,10 @@ const Navbar = () => {
           </span>
         </NavLink>
       </div>
-      <div className="navbar-end flex items-center">
+      {/* navbar  */}
+      <div className="navbar-end hidden  lg:flex items-center">
         {!user ? (
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu   menu-horizontal px-1">
             <li>
               <NavLink
                 to="/login"

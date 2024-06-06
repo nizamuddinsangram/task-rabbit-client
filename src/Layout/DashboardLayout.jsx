@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   FaBars,
   FaClipboardList,
@@ -7,22 +6,22 @@ import {
   FaTasks,
   FaUserCog,
 } from "react-icons/fa";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
   const [data] = useRole();
   const role = data?.role;
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (role === "Worker") {
-      navigate("/dashboard/workerHome");
-    } else if (role === "TaskCreator") {
-      navigate("/dashboard/taskCreator");
-    } else if (role === "admin") {
-      navigate("/dashboard/adminHome");
-    }
-  }, [role, navigate]);
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   if (role === "Worker") {
+  //     navigate("/dashboard/workerHome");
+  //   } else if (role === "TaskCreator") {
+  //     navigate("/dashboard/taskCreator");
+  //   } else if (role === "admin") {
+  //     navigate("/dashboard/adminHome");
+  //   }
+  // }, [role, navigate]);
   return (
     <>
       <div className="bg-[#005149] py-6 flex items-center justify-between px-4">
