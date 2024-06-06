@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosCommon from "../../../../hooks/useAxiosCommon";
+import TaskCreatorState from "./TaskCreatorState";
 
 const TaskCreatorHome = () => {
   const { user, loading } = useAuth();
@@ -54,6 +55,7 @@ const TaskCreatorHome = () => {
   }
   return (
     <>
+      <TaskCreatorState />
       <div className="container mx-auto p-8">
         <h2 className="text-3xl font-semibold mb-4 text-center">
           Submissions to Review
