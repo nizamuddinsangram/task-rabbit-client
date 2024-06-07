@@ -27,7 +27,109 @@ const AdminHome = () => {
   return (
     <>
       <AdminHomeStates />
+
       <div className="container mx-auto p-8">
+        <h2
+          className="text-3xl font-semibold mb-6 text-center"
+          style={{ color: "#005149" }}
+        >
+          Withdraw Requests
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
+            <thead className="bg-gray-100">
+              <tr>
+                <th
+                  className="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium"
+                  style={{ color: "#005149" }}
+                >
+                  Worker Name
+                </th>
+                <th
+                  className="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium"
+                  style={{ color: "#005149" }}
+                >
+                  Withdraw Coin
+                </th>
+                <th
+                  className="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium"
+                  style={{ color: "#005149" }}
+                >
+                  Withdraw Amount
+                </th>
+                <th
+                  className="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium"
+                  style={{ color: "#005149" }}
+                >
+                  Payment Number
+                </th>
+                <th
+                  className="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium"
+                  style={{ color: "#005149" }}
+                >
+                  Payment System
+                </th>
+                <th
+                  className="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium"
+                  style={{ color: "#005149" }}
+                >
+                  Withdraw Time
+                </th>
+                <th
+                  className="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium"
+                  style={{ color: "#005149" }}
+                >
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {withdrawRequests?.map((request) => (
+                <tr key={request._id} className="odd:bg-gray-50">
+                  <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-700">
+                    {request.worker_name}
+                  </td>
+                  <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-700">
+                    {request.withdraw_coin}
+                  </td>
+                  <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-700">
+                    {request.withdraw_amount}
+                  </td>
+                  <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-700">
+                    {request.payment_number}
+                  </td>
+                  <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-700">
+                    {request?.payment_system}
+                  </td>
+                  <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-700">
+                    {new Date(request.withdraw_time).toLocaleString()}
+                  </td>
+                  <td className="px-6 py-4 border-b border-gray-200 text-sm text-gray-700">
+                    <button
+                      className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full"
+                      style={{
+                        backgroundColor: "#005149",
+                        hover: { backgroundColor: "#004137" },
+                      }}
+                      onClick={() => handlePaymentSuccess(request._id)}
+                    >
+                      Payment Success
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default AdminHome;
+
+{
+  /* <div className="container mx-auto p-8">
         <h2 className="text-3xl font-semibold mb-6 text-center">
           Withdraw Requests
         </h2>
@@ -92,9 +194,5 @@ const AdminHome = () => {
             </tbody>
           </table>
         </div>
-      </div>
-    </>
-  );
-};
-
-export default AdminHome;
+      </div> */
+}

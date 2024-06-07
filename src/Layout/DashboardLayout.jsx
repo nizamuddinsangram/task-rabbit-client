@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   FaBars,
   FaClipboardList,
@@ -6,28 +7,30 @@ import {
   FaTasks,
   FaUserCog,
 } from "react-icons/fa";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
   const [data] = useRole();
   const role = data?.role;
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (role === "Worker") {
-  //     navigate("/dashboard/workerHome");
-  //   } else if (role === "TaskCreator") {
-  //     navigate("/dashboard/taskCreator");
-  //   } else if (role === "admin") {
-  //     navigate("/dashboard/adminHome");
-  //   }
-  // }, [role, navigate]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (role === "Worker") {
+      navigate("/dashboard/workerHome");
+    } else if (role === "TaskCreator") {
+      navigate("/dashboard/taskCreator");
+    } else if (role === "admin") {
+      navigate("/dashboard/adminHome");
+    }
+  }, [role, navigate]);
   return (
     <>
       <div className="bg-[#005149] py-6 flex items-center justify-between px-4">
         <FaBars size={24} className="text-white lg:hidden cursor-pointer" />
         <NavLink to="/" className="text-white text-2xl font-bold ml-4">
-          my website my wish
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFC107] via-[#FF6347] to-[#FFBF00]">
+            TASKRABBIT
+          </span>
         </NavLink>
         <p className="text-white text-lg">coins {data?.coins}</p>
       </div>

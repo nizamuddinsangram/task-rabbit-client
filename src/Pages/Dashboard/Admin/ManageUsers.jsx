@@ -40,29 +40,50 @@ const ManageUsers = () => {
   return (
     <>
       <div className="container mx-auto p-8">
-        <h2 className="text-4xl font-bold mb-8 text-center text-gray-800">
+        <h2
+          className="text-4xl font-bold mb-8 text-center"
+          style={{ color: "#005149" }}
+        >
           Manage Users
         </h2>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
             <thead className="bg-gray-200">
               <tr>
-                <th className="px-6 py-3 border-b border-gray-300 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                <th
+                  className="px-6 py-3 border-b border-gray-300 text-left text-sm font-medium uppercase tracking-wider"
+                  style={{ color: "#005149" }}
+                >
                   Display Name
                 </th>
-                <th className="px-6 py-3 border-b border-gray-300 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                <th
+                  className="px-6 py-3 border-b border-gray-300 text-left text-sm font-medium uppercase tracking-wider"
+                  style={{ color: "#005149" }}
+                >
                   Email
                 </th>
-                <th className="px-6 py-3 border-b border-gray-300 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                <th
+                  className="px-6 py-3 border-b border-gray-300 text-left text-sm font-medium uppercase tracking-wider"
+                  style={{ color: "#005149" }}
+                >
                   Photo
                 </th>
-                <th className="px-6 py-3 border-b border-gray-300 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                <th
+                  className="px-6 py-3 border-b border-gray-300 text-left text-sm font-medium uppercase tracking-wider"
+                  style={{ color: "#005149" }}
+                >
                   Role
                 </th>
-                <th className="px-6 py-3 border-b border-gray-300 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                <th
+                  className="px-6 py-3 border-b border-gray-300 text-left text-sm font-medium uppercase tracking-wider"
+                  style={{ color: "#005149" }}
+                >
                   Coins
                 </th>
-                <th className="px-6 py-3 border-b border-gray-300 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">
+                <th
+                  className="px-6 py-3 border-b border-gray-300 text-left text-sm font-medium uppercase tracking-wider"
+                  style={{ color: "#005149" }}
+                >
                   Actions
                 </th>
               </tr>
