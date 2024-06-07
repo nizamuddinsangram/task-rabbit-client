@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 
 const MyTaskUpdate = () => {
   const axiosCommon = useAxiosCommon();
   const { taskId } = useParams();
-  const { data: task } = useQuery({
+  const { data: task, refetch } = useQuery({
     queryKey: ["taskUpdate", taskId],
     queryFn: async () => {
       const { data } = await axiosCommon(`/singleTask/${taskId}`);
@@ -13,12 +14,27 @@ const MyTaskUpdate = () => {
     },
   });
 
-  const handleUpdate = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const title = form.title.value;
-    const description = form.description.value;
-    console.log(title, description);
+    const task_title = form.title.value;
+    const submission_info = form.description.value;
+
+    const updatedTask = {
+      task_title,
+      submission_info,
+    };
+    try {
+      const { data } = await axiosCommon.patch(`/tasks/${taskId}`, updatedTask);
+      console.log(data);
+      if (data.modifiedCount > 0) {
+        toast.success("updated successfully");
+        refetch();
+        console.log("Task updated successfully");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <>

@@ -15,6 +15,7 @@ const MyTasks = () => {
     enabled: !loading || !!user?.email,
     queryFn: async () => {
       const { data } = await axiosCommon(`/tasks/${user?.email}`);
+      console.log(data);
       return data;
     },
   });
