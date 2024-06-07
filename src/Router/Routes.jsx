@@ -15,6 +15,7 @@ import TaskList from "../Pages/Dashboard/Worker/TaskList";
 import Withdrawals from "../Pages/Dashboard/Worker/Withdrawals";
 import WorkerHome from "../Pages/Dashboard/Worker/WorkerHome";
 import WorkerTaskDetails from "../Pages/Dashboard/Worker/WorkerTaskDetails";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    errorElement: <p>oppos this is an error</p>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

@@ -7,6 +7,10 @@ const Navbar = () => {
   const handleLogout = async () => {
     await logOut();
   };
+  const handleWatchDemo = () => {
+    window.location.href =
+      "https://www.youtube.com/watch?v=ZYaZ6Odbx_Y&ab_channel=AYAT";
+  };
   return (
     <div className="navbar bg-[#005149] text-white rounded-lg p-4">
       <div className="navbar-start">
@@ -62,16 +66,13 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
+                  <button
+                    onClick={handleWatchDemo}
                     to="/watch"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "bg-[#FFBF00] text-[#005149] rounded-md px-2 py-1"
-                        : "hover:bg-[#FFC107] hover:text-[#005149] rounded-md px-2 py-1 transition-colors"
-                    }
+                    className="btn btn-sm bg-[#005149] text-white rounded-lg hover:bg-[#FFC107] transition-colors"
                   >
                     Watch Demo
-                  </NavLink>
+                  </button>
                 </li>
               </>
             ) : (
@@ -138,16 +139,13 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink
+              <button
+                onClick={handleWatchDemo}
                 to="/watch"
-                className={({ isActive }) =>
-                  isActive
-                    ? "bg-[#FFBF00] text-[#005149] rounded-md px-2 py-1"
-                    : " hover:text-[#005149] rounded-md px-2 py-1 transition-colors"
-                }
+                className="btn btn-sm bg-[#005149] text-white rounded-lg hover:bg-[#FFC107] transition-colors"
               >
                 Watch Demo
-              </NavLink>
+              </button>
             </li>
           </ul>
         ) : (
