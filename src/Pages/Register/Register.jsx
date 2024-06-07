@@ -4,7 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { imageUpload } from "../../../public/utils";
 import { AuthContext } from "../../Provider/AuthProvider";
-
+import img from "../../assets/login/task-rabbit-login.jpg";
 const Register = () => {
   const { createUser, googleSignIn, updateUserProfile, loading, setLoading } =
     useContext(AuthContext);
@@ -60,10 +60,13 @@ const Register = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div
+      style={{ backgroundImage: `url(${img})` }}
+      className="flex justify-center items-center min-h-screen"
+    >
       <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900">
         <div className="mb-8 text-center">
-          <h1 className="my-3 text-4xl font-bold">Register </h1>
+          <h1 className="my-3 text-4xl font-bold text-[#005149]">Register </h1>
           <p className="text-sm text-gray-400">Welcome to TASKRABBIT</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -123,7 +126,7 @@ const Register = () => {
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
               />
             </div>
-            {/* drop down for select the role  */}
+
             <div>
               <label htmlFor="role" className="block mb-2 text-sm">
                 Role
@@ -144,15 +147,9 @@ const Register = () => {
 
           <div>
             <button
-              // disabled={loading}
               type="submit"
-              className="bg-rose-500 w-full rounded-md py-3 text-white"
+              className="bg-[#005149] w-full rounded-md py-3 text-white"
             >
-              {/* {loading ? (
-                <TbFidgetSpinner className='animate-spin m-auto' />
-              ) : (
-                'Continue'
-              )} */}
               Register
             </button>
           </div>
