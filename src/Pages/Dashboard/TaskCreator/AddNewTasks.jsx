@@ -70,6 +70,111 @@ const AddNewTasks = () => {
     <>
       <form
         onSubmit={handleSubmit}
+        className="max-w-2xl mx-auto p-8 bg-white shadow-lg rounded-lg lg:max-w-4xl"
+      >
+        <h2 className="text-3xl font-bold mb-6 text-center text-[#005149]">
+          Add New Task
+        </h2>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Task Title:
+          </label>
+          <input
+            type="text"
+            name="task_title"
+            required
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Task Detail:
+          </label>
+          <textarea
+            name="task_detail"
+            required
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Task Quantity:
+          </label>
+          <input
+            type="number"
+            name="task_quantity"
+            required
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Payable Amount:
+          </label>
+          <input
+            type="number"
+            name="payable_amount"
+            required
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Completion Date:
+          </label>
+          <input
+            type="date"
+            name="completion_date"
+            required
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Submission Info:
+          </label>
+          <textarea
+            name="submission_info"
+            required
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Task Image URL:
+          </label>
+          <input
+            type="file"
+            name="task_image_url"
+            required
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+
+        <div className="flex items-center justify-between">
+          <button
+            type="submit"
+            className="bg-[#005149] hover:bg-[#003f3a] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Add Task
+          </button>
+        </div>
+      </form>
+    </>
+  );
+};
+
+export default AddNewTasks;
+{
+  /* <form
+        onSubmit={handleSubmit}
         className="max-w-lg mx-auto p-8 bg-white shadow-lg rounded-lg"
       >
         <h2 className="text-2xl font-bold mb-6 text-center">Add New Task</h2>
@@ -164,9 +269,5 @@ const AddNewTasks = () => {
             Add Task
           </button>
         </div>
-      </form>
-    </>
-  );
-};
-
-export default AddNewTasks;
+      </form> */
+}
