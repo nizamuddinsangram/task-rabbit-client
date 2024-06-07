@@ -50,29 +50,32 @@ const MyTasks = () => {
   };
 
   return (
-    <div className="overflow-x-auto">
-      <table className="table">
-        {/* head */}
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Title</th>
-            <th>Favorite Color</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* row 1 */}
-          {newTasks.map((task) => (
-            <AddNewTasksRow
-              handleDelete={handleDelete}
-              key={task._id}
-              task={task}
-              refetch={refetch}
-            />
-          ))}
-        </tbody>
-      </table>
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <h2 className="text-3xl font-bold mb-8 text-[#005149]">My Tasks</h2>
+      <div className="overflow-x-auto">
+        <table className="table">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Title</th>
+              <th>Favorite Color</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* row 1 */}
+            {newTasks.map((task) => (
+              <AddNewTasksRow
+                handleDelete={handleDelete}
+                key={task._id}
+                task={task}
+                refetch={refetch}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

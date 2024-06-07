@@ -1,8 +1,59 @@
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
+
 const MyTaskUpdate = () => {
+  const axiosCommon = useAxiosCommon();
+  const { taskId } = useParams();
+  const { data: task } = useQuery({
+    queryKey: ["taskUpdate", taskId],
+    queryFn: async () => {
+      const { data } = await axiosCommon(`/singleTask/${taskId}`);
+      return data;
+    },
+  });
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const title = form.title.value;
+    const description = form.description.value;
+    console.log(title, description);
+  };
   return (
-    <div>
-      <p>update my tasks</p>
-    </div>
+    <>
+      <form
+        onSubmit={handleUpdate}
+        className="max-w-md mx-auto mt-8 p-6 rounded-lg"
+      >
+        <h2 className="text-xl font-bold mb-4">Update Task</h2>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">Title:</label>
+          <input
+            type="text"
+            name="title"
+            defaultValue={task?.task_title}
+            className="w-full px-3 py-2 border rounded-md text-gray-700"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">
+            Description:
+          </label>
+          <textarea
+            name="description"
+            defaultValue={task?.submission_info}
+            className="w-full px-3 py-2 border rounded-md text-gray-700"
+          />
+        </div>
+        <button
+          type="submit"
+          className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Update Task
+        </button>
+      </form>
+    </>
   );
 };
 
