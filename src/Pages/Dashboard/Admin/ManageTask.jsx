@@ -74,7 +74,8 @@ const ManageTask = () => {
                     {task.task_quantity}
                   </td>
                   <td className="py-3 px-4 border-b border-gray-200">
-                    {task.payable_amount}
+                    {parseFloat(task?.payable_amount) *
+                      parseFloat(task?.task_quantity)}
                   </td>
                   <td className="py-3 px-4 border-b border-gray-200">
                     {task.task_quantity ? "Yes" : "No"}
@@ -117,11 +118,13 @@ const ManageTask = () => {
               </p>
               <p className="font-sans text-gray-700">
                 <strong className="font-semibold">Coin Needed:</strong>{" "}
-                {selectedTask.payable_amount}
+                {selectedTask
+                  ? selectedTask.payable_amount * selectedTask.task_quantity
+                  : ""}
               </p>
               <p className="font-sans text-gray-700">
                 <strong className="font-semibold">Availability:</strong>{" "}
-                {selectedTask.task_quantity ? "Yes" : "No"}
+                {selectedTask.task_quantity ? "True" : "False"}
               </p>
               <button
                 className="mt-6 py-2 px-4 bg-[#005149] text-white rounded hover:bg-[#004538] font-medium"

@@ -17,13 +17,14 @@ const WorkerHome = () => {
   return (
     <>
       <WorkerStates />
+
       <div className="container mx-auto p-8">
-        <h2 className="text-3xl font-semibold mb-4 text-center">
+        <h2 className="text-3xl font-semibold mb-4 text-center bg-[#005149">
           My Approved Submissions
         </h2>
         <div className="overflow-x-auto">
           <table className="table-auto w-full border-collapse border border-gray-300">
-            <thead className="bg-gray-200">
+            <thead className="bg-[#005149] text-white">
               <tr>
                 <th className="px-4 py-2 border border-gray-300">Task Title</th>
                 <th className="px-4 py-2 border border-gray-300">
@@ -36,8 +37,11 @@ const WorkerHome = () => {
               </tr>
             </thead>
             <tbody>
-              {approved?.map((submission) => (
-                <tr key={submission._id} className="odd:bg-gray-50">
+              {approved?.map((submission, index) => (
+                <tr
+                  key={index}
+                  className={index % 2 === 0 ? "bg-gray-100" : ""}
+                >
                   <td className="px-4 py-2 border border-gray-300">
                     {submission.task_title}
                   </td>
