@@ -23,6 +23,7 @@ import DashboardHome from "../components/Dashboard/DashboardHome";
 import MyTaskUpdate from "../components/Dashboard/TaskCreator/MyTaskUpdate";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PribateRoute";
+import TaskCreatorRoute from "./TaskCreatorRoute";
 
 const router = createBrowserRouter([
   {
@@ -89,7 +90,9 @@ const router = createBrowserRouter([
         path: "taskCreator",
         element: (
           <PrivateRoute>
-            <TaskCreatorHome />
+            <TaskCreatorRoute>
+              <TaskCreatorHome />
+            </TaskCreatorRoute>
           </PrivateRoute>
         ),
       },
@@ -97,7 +100,9 @@ const router = createBrowserRouter([
         path: "addNewTask",
         element: (
           <PrivateRoute>
-            <AddNewTasks />
+            <TaskCreatorRoute>
+              <AddNewTasks />
+            </TaskCreatorRoute>
           </PrivateRoute>
         ),
       },
@@ -105,7 +110,9 @@ const router = createBrowserRouter([
         path: "myTasks",
         element: (
           <PrivateRoute>
-            <MyTasks />
+            <TaskCreatorRoute>
+              <MyTasks />
+            </TaskCreatorRoute>
           </PrivateRoute>
         ),
       },
@@ -144,7 +151,9 @@ const router = createBrowserRouter([
         path: "myTaskUpdate/:taskId",
         element: (
           <PrivateRoute>
-            <MyTaskUpdate />
+            <TaskCreatorRoute>
+              <MyTaskUpdate />
+            </TaskCreatorRoute>
           </PrivateRoute>
         ),
       },
@@ -152,7 +161,9 @@ const router = createBrowserRouter([
         path: "purchaseCoin",
         element: (
           <PrivateRoute>
-            <PurchaseCoin />
+            <TaskCreatorRoute>
+              <PurchaseCoin />
+            </TaskCreatorRoute>
           </PrivateRoute>
         ),
       },
@@ -160,7 +171,10 @@ const router = createBrowserRouter([
         path: "payment/:amount",
         element: (
           <PrivateRoute>
-            <PaymentPage />
+            <TaskCreatorRoute>
+              {" "}
+              <PaymentPage />
+            </TaskCreatorRoute>
           </PrivateRoute>
         ),
       },
@@ -168,7 +182,9 @@ const router = createBrowserRouter([
         path: "paymentHistory",
         element: (
           <PrivateRoute>
-            <PaymentHistory />
+            <TaskCreatorRoute>
+              <PaymentHistory />
+            </TaskCreatorRoute>
           </PrivateRoute>
         ),
       },

@@ -1,12 +1,12 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../../assets/login/task-rabbit-login.jpg";
 import useAuth from "../../hooks/useAuth";
 const Login = () => {
-  const { signIn, googleSignIn } = useAuth();
+  const { signIn, googleSignIn, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [error, setError] = useState();
@@ -28,7 +28,7 @@ const Login = () => {
       //sign in user by email and password
       await signIn(email, password);
       toast.success("login successful");
-      navigate(location.state ? location.state : "/");
+      // navigate(location.state ? location.state : "/");
     } catch (err) {
       toast.error("login failed", err.message);
     }
@@ -53,12 +53,17 @@ const Login = () => {
         savedUser
       );
       // console.log(data);
-      navigate(location.state ? location.state : "/");
+      // navigate(location.state ? location.state : "/");
     } catch (err) {
       console.log(err);
     }
     setLoading(false);
   };
+  useEffect(() => {
+    if (user?.email) {
+      navigate(location.state ? location.state : "/");
+    }
+  }, [user]);
   return (
     <div
       className="flex justify-center items-center min-h-screen"
