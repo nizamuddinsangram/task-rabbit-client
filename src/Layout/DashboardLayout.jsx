@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   FaBars,
   FaBell,
@@ -8,14 +9,26 @@ import {
   FaUserCog,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import NotificationPopup from "../components/Dashboard/NotificationPopup";
 import useAuth from "../hooks/useAuth";
+import useAxiosCommon from "../hooks/useAxiosCommon";
 import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
+  const [showNotificationPopup, setShowNotificationPopup] = useState(false); // State to manage the visibility of the notification popup
+  const [notifications, setNotifications] = useState([]);
+  const axiosCommon = useAxiosCommon();
   const { user } = useAuth();
   // console.log(user);
   const [data] = useRole();
   const role = data?.role;
+
+  const handleNotifications = async () => {
+    const { data } = await axiosCommon(`/notifications/${user?.email}`);
+    console.log(data);
+    setNotifications(data);
+    setShowNotificationPopup(true);
+  };
 
   return (
     <>
@@ -49,7 +62,24 @@ const DashboardLayout = () => {
             </div>
           </div>
 
-          <FaBell size={24} className="text-white  cursor-pointer ml-4" />
+          <div className="flex items-center">
+            <div className="flex items-center">
+              <FaBell
+                size={24}
+                className="text-white cursor-pointer ml-4"
+                onClick={handleNotifications}
+              />
+            </div>
+          </div>
+
+          {showNotificationPopup && (
+            <NotificationPopup
+              notifications={notifications}
+              onClose={() => setShowNotificationPopup(false)}
+            />
+          )}
+          {/* notification */}
+          {/* <FaBell size={24} className="text-white  cursor-pointer ml-4" /> */}
         </div>
       </div>
       <div className="flex">

@@ -32,13 +32,13 @@ const TaskCreatorHome = () => {
     task_title,
     task_creator_name
   ) => {
-    console.log(
-      id,
-      payment_amount,
-      worker_email,
-      task_title,
-      task_creator_name
-    );
+    // console.log(
+    //   id,
+    //   payment_amount,
+    //   worker_email,
+    //   task_title,
+    //   task_creator_name
+    // );
     const approveData = {
       status: "approve",
       payment_amount,
@@ -57,11 +57,22 @@ const TaskCreatorHome = () => {
       console.log(err);
     }
   };
-  const handleReject = async (id) => {
+  const handleReject = async (
+    id,
+    payment_amount,
+    worker_email,
+    task_title,
+    task_creator_name
+  ) => {
+    const approveData = {
+      status: "approve",
+      payment_amount,
+      worker_email,
+      task_title,
+      task_creator_name,
+    };
     // console.log("reject");
-    const { data } = await axiosCommon.patch(`/approve/${id}`, {
-      status: "reject",
-    });
+    const { data } = await axiosCommon.patch(`/approve/${id}`, approveData);
     // console.log(data);
     if (data.modifiedCount > 0) {
       refetch();
@@ -150,7 +161,15 @@ const TaskCreatorHome = () => {
                         </button>
                         <button
                           className="bg-red-500 hover:bg-red-600 text-white py-1 px-4 rounded-full"
-                          onClick={() => handleReject(submission._id)}
+                          onClick={() =>
+                            handleReject(
+                              submission._id,
+                              submission.payment_amount,
+                              submission.workerInfo.worker_email,
+                              submission.task_title,
+                              submission.creator_name
+                            )
+                          }
                         >
                           Reject
                         </button>
