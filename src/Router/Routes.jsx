@@ -19,6 +19,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import DashboardHome from "../components/Dashboard/DashboardHome";
 import MyTaskUpdate from "../components/Dashboard/TaskCreator/MyTaskUpdate";
 import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PribateRoute";
@@ -59,6 +60,18 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        index: true,
+        element: <DashboardHome />,
+      },
+      // {
+      //   index: true,
+      //   element: (
+      //     <PrivateRoute>
+      //       <WorkerHome />
+      //     </PrivateRoute>
+      //   ),
+      // },
       {
         path: "taskList",
         element: (
@@ -109,6 +122,16 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      // {
+      //   index: true,
+      //   element: (
+      //     <PrivateRoute>
+      //       <AdminRoute>
+      //         <AdminHome />
+      //       </AdminRoute>
+      //     </PrivateRoute>
+      //   ),
+      // },
       {
         path: "manageUsers",
         element: (

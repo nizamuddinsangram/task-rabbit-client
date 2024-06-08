@@ -19,18 +19,32 @@ const TaskCreatorHome = () => {
     queryKey: ["taskReview"],
     queryFn: async () => {
       const { data } = await axiosCommon(`/pendingSubmissions/${user?.email}`);
-      // console.log(data);
+      console.log(data);
       return data;
     },
   });
   // console.log("task creation home", taskReviews);
 
-  const handleApprove = async (id, payment_amount, worker_email) => {
-    // console.log(id, payment_amount, worker_email);
+  const handleApprove = async (
+    id,
+    payment_amount,
+    worker_email,
+    task_title,
+    task_creator_name
+  ) => {
+    console.log(
+      id,
+      payment_amount,
+      worker_email,
+      task_title,
+      task_creator_name
+    );
     const approveData = {
       status: "approve",
       payment_amount,
       worker_email,
+      task_title,
+      task_creator_name,
     };
     try {
       const approve = await axiosCommon.patch(`/approve/${id}`, approveData);
@@ -126,7 +140,9 @@ const TaskCreatorHome = () => {
                             handleApprove(
                               submission._id,
                               submission.payment_amount,
-                              submission.workerInfo.worker_email
+                              submission.workerInfo.worker_email,
+                              submission.task_title,
+                              submission.creator_name
                             )
                           }
                         >
