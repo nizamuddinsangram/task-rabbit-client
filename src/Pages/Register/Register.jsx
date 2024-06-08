@@ -38,7 +38,6 @@ const Register = () => {
       navigate(location.state ? location.state : "/");
     } catch (err) {
       toast.error("Register failed: " + err.message);
-
       console.log(err);
     }
   };
