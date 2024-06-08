@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const data = [];
+
   const { user, logOut } = useAuth();
   const handleLogout = async () => {
     await logOut();
@@ -90,7 +92,7 @@ const Navbar = () => {
                   </NavLink>
                 </li>
                 <li className="btn btn-sm bg-[#005149] text-white rounded-lg hover:bg-[#FFC107]   px-2 py-1 transition-colors">
-                  Coins
+                  Coins {data ? data.coins : 0}
                 </li>
                 <li>
                   <button
@@ -152,7 +154,7 @@ const Navbar = () => {
           <>
             <span className="mr-8 flex justify-between items-center">
               <FaCoins className="mx-2" />
-              Coins: {}
+              Coins {data ? data.coins : 0}
             </span>
             <NavLink
               to="/dashboard"
