@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import useRole from "../../../hooks/useRole";
@@ -23,7 +24,7 @@ const CheckoutForm = ({ amount }) => {
         });
         // setClientSecret(data.clientSecret);
         setClientSecret(data.clientSecret);
-        console.log("came from backend", data.clientSecret);
+        // console.log("came from backend", data.clientSecret);
         return data.clientSecret;
       };
       getData();
@@ -49,10 +50,10 @@ const CheckoutForm = ({ amount }) => {
     });
 
     if (error) {
-      console.log("[error]", error);
+      // console.log("[error]", error);
       setError(error.message);
     } else {
-      console.log("[PaymentMethod]", paymentMethod);
+      // console.log("[PaymentMethod]", paymentMethod);
       setError("");
     }
     //confirm payment method
@@ -69,9 +70,10 @@ const CheckoutForm = ({ amount }) => {
     if (confirmError) {
       console.log("confirm error", confirmError);
     } else {
-      console.log("payment intent", paymentIntent);
+      // console.log("payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-        console.log("taka keta nise", paymentIntent.id);
+        toast.success("payment successful");
+        // console.log("taka keta nise", paymentIntent.id);
         setTransactionId(paymentIntent.id);
         //post request start
         const { data } = await axiosCommon.post("/payment-info", {

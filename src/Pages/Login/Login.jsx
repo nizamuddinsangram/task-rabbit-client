@@ -16,7 +16,7 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    // console.log(email, password);
     const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailValid.test(email)) {
       setError("please enter a valid email");
@@ -30,8 +30,7 @@ const Login = () => {
       toast.success("login successful");
       navigate(location.state ? location.state : "/");
     } catch (err) {
-      console.log(err);
-      toast.error("login failed");
+      toast.error("login failed", err.message);
     }
     setLoading(false);
   };
@@ -53,7 +52,7 @@ const Login = () => {
         "http://localhost:8000/google-login",
         savedUser
       );
-      console.log(data);
+      // console.log(data);
       navigate(location.state ? location.state : "/");
     } catch (err) {
       console.log(err);

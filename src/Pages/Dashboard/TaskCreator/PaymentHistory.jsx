@@ -12,7 +12,7 @@ const PaymentHistory = () => {
       return data;
     },
   });
-  console.log(payments);
+  // console.log(payments);
   return (
     <div className="overflow-x-auto">
       <table className="table table-zebra">

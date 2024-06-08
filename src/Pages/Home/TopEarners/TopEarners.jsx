@@ -10,7 +10,7 @@ const TopEarners = () => {
       return data;
     },
   });
-  console.log(topEarners);
+  // console.log(topEarners);
   if (isLoading) {
     return <p>loading....................</p>;
   }

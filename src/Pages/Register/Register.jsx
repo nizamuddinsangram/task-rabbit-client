@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useContext } from "react";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { imageUpload } from "../../../public/utils";
@@ -28,14 +29,16 @@ const Register = () => {
         image_url,
       };
       const { data } = await axios.post("http://localhost:8000/register", user);
-      console.log(data);
+      // console.log(data);
       // user registration
       await createUser(email, password);
       // update user name display photo
       await updateUserProfile(name, image_url);
-
+      toast.success("Registered successfully!");
       navigate(location.state ? location.state : "/");
     } catch (err) {
+      toast.error("Register failed: " + err.message);
+
       console.log(err);
     }
   };
@@ -53,7 +56,11 @@ const Register = () => {
         "http://localhost:8000/google-login",
         savedUser
       );
-      console.log(data);
+      if (data.message) {
+        toast.success("registered successfully");
+      }
+      // console.log(data);
+
       navigate(location.state ? location.state : "/");
     } catch (err) {
       console.log(err);
