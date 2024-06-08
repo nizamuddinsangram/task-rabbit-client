@@ -30,12 +30,12 @@ const WorkerTaskDetails = () => {
   if (isError) {
     return <div>Error: {error.message}</div>;
   }
-  console.log(task);
+  // console.log(task);
 
   const handleSubmission = async (e) => {
     e.preventDefault();
     const submission_details = e.target.elements.textarea?.value;
-    console.log(submission_details);
+    // console.log(submission_details);
     const taskSubmit = {
       submission_details,
       task_id: task._id,
@@ -57,7 +57,7 @@ const WorkerTaskDetails = () => {
     // console.log(taskSubmit);
     try {
       const submission = await axiosCommon.post("/submission", taskSubmit);
-      console.log(submission.data);
+      // console.log(submission.data);
       if (submission.data.insertedId) {
         toast.success("Add a new submission");
       }

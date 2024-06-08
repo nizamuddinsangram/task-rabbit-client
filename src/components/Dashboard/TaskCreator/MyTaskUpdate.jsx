@@ -26,7 +26,7 @@ const MyTaskUpdate = () => {
     };
     try {
       const { data } = await axiosCommon.patch(`/tasks/${taskId}`, updatedTask);
-      console.log(data);
+      // console.log(data);
       if (data.modifiedCount > 0) {
         toast.success("updated successfully");
         refetch();

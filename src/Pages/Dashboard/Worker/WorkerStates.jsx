@@ -12,7 +12,7 @@ const WorkerStates = () => {
       return taskState.data;
     },
   });
-  console.log(taskCreatorState);
+  // console.log(taskCreatorState);
   return (
     <>
       <div className="bg-gray-100 p-6 rounded-lg shadow-md mb-6">

@@ -34,9 +34,9 @@ const Withdrawals = () => {
       payment_system: payment_system,
       withdraw_time: new Date(),
     };
-    console.log(withdrawalDollars);
+    // console.log(withdrawalDollars);
     const withdraw = await axiosCommon.post("/withdraw", withdrawalDollars);
-    console.log(withdraw.data);
+    // console.log(withdraw.data);
     if (withdraw.data.withdraw.insertedId) {
       toast.success("please wait for admin confirmation");
       refetch();

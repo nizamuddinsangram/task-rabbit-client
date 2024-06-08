@@ -19,14 +19,14 @@ const TaskCreatorHome = () => {
     queryKey: ["taskReview"],
     queryFn: async () => {
       const { data } = await axiosCommon(`/pendingSubmissions/${user?.email}`);
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
   // console.log("task creation home", taskReviews);
 
   const handleApprove = async (id, payment_amount, worker_email) => {
-    console.log(id, payment_amount, worker_email);
+    // console.log(id, payment_amount, worker_email);
     const approveData = {
       status: "approve",
       payment_amount,
@@ -34,7 +34,7 @@ const TaskCreatorHome = () => {
     };
     try {
       const approve = await axiosCommon.patch(`/approve/${id}`, approveData);
-      console.log(approve.data);
+      // console.log(approve.data);
       if (approve.data.modifiedCount > 0) {
         refetch();
         toast.success("status will be updated");
@@ -44,11 +44,11 @@ const TaskCreatorHome = () => {
     }
   };
   const handleReject = async (id) => {
-    console.log("reject");
+    // console.log("reject");
     const { data } = await axiosCommon.patch(`/approve/${id}`, {
       status: "reject",
     });
-    console.log(data);
+    // console.log(data);
     if (data.modifiedCount > 0) {
       refetch();
       toast.success("reject the request");

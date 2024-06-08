@@ -28,7 +28,7 @@ const ManageTask = () => {
       console.log(err);
     }
   };
-  console.log(taskManages);
+  // console.log(taskManages);
   const handleViewTask = (task) => {
     setSelectedTask(task);
   };

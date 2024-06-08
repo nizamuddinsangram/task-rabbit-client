@@ -7,11 +7,11 @@ const AdminHomeStates = () => {
     queryKey: ["states"],
     queryFn: async () => {
       const stateData = await axiosSecure(`/admin-stats`);
-      console.log(stateData.data);
+      // console.log(stateData.data);
       return stateData.data;
     },
   });
-  console.log(data);
+  // console.log(data);
 
   return (
     <>

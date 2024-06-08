@@ -11,8 +11,8 @@ const PaymentPage = () => {
   const { amount } = useParams();
   const numericAmount = parseFloat(amount);
 
-  console.log(numericAmount);
-  console.log(typeof numericAmount);
+  // console.log(numericAmount);
+  // console.log(typeof numericAmount);
   return (
     <div>
       <Elements stripe={stripePromise}>

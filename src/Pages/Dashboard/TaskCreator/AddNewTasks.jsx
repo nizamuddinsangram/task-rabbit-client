@@ -6,7 +6,7 @@ import useRole from "../../../hooks/useRole";
 
 const AddNewTasks = () => {
   const [data, refetch] = useRole();
-  console.log("add new taska component", data.coins);
+  // console.log("add new taska component", data.coins);
   const axiosCommon = useAxiosCommon();
   const { user } = useAuth();
   const handleSubmit = async (e) => {
@@ -27,7 +27,7 @@ const AddNewTasks = () => {
     };
     // total cost calculate and throw a message to the user
     const total_cost = parseFloat(task_quantity * payable_amount);
-    console.log(typeof total_cost);
+    // console.log(typeof total_cost);
     if (total_cost > data?.coins) {
       toast.error("Not available Coin. Purchase Coin ");
       return;
@@ -52,7 +52,7 @@ const AddNewTasks = () => {
         refetch();
         toast.success("added successfully");
       }
-      console.log(test.data.insertDoc.insertedId);
+      // console.log(test.data.insertDoc.insertedId);
       //post tasks data to the server
       // const { data } = await axiosCommon.post(`/tasks`, addTasks);
       // console.log(data);
@@ -172,102 +172,3 @@ const AddNewTasks = () => {
 };
 
 export default AddNewTasks;
-{
-  /* <form
-        onSubmit={handleSubmit}
-        className="max-w-lg mx-auto p-8 bg-white shadow-lg rounded-lg"
-      >
-        <h2 className="text-2xl font-bold mb-6 text-center">Add New Task</h2>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Task Title:
-          </label>
-          <input
-            type="text"
-            name="task_title"
-            required
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Task Detail:
-          </label>
-          <textarea
-            name="task_detail"
-            required
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Task Quantity:
-          </label>
-          <input
-            type="number"
-            name="task_quantity"
-            required
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Payable Amount:
-          </label>
-          <input
-            type="number"
-            name="payable_amount"
-            required
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Completion Date:
-          </label>
-          <input
-            type="date"
-            name="completion_date"
-            required
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Submission Info:
-          </label>
-          <textarea
-            name="submission_info"
-            required
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
-            Task Image URL:
-          </label>
-          <input
-            type="file"
-            name="task_image_url"
-            required
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          />
-        </div>
-
-        <div className="flex items-center justify-between">
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          >
-            Add Task
-          </button>
-        </div>
-      </form> */
-}

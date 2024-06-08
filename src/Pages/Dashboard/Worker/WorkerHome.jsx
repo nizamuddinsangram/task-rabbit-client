@@ -13,7 +13,7 @@ const WorkerHome = () => {
       return data;
     },
   });
-  console.log(approved);
+  // console.log(approved);
   return (
     <>
       <WorkerStates />

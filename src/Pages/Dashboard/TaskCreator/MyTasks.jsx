@@ -15,7 +15,7 @@ const MyTasks = () => {
     enabled: !loading || !!user?.email,
     queryFn: async () => {
       const { data } = await axiosCommon(`/tasks/${user?.email}`);
-      console.log(data);
+      // console.log(data);
       return data;
     },
   });
@@ -33,7 +33,7 @@ const MyTasks = () => {
       if (result.isConfirmed) {
         try {
           const { data } = await axiosCommon.delete(`/tasks/${id}`);
-          console.log(data);
+          // console.log(data);
           if (data.result.deletedCount > 0) {
             refetch();
             refetchRole();

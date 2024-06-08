@@ -14,11 +14,11 @@ const AdminHome = () => {
       return data;
     },
   });
-  console.log(withdrawRequests);
+  // console.log(withdrawRequests);
   const handlePaymentSuccess = async (id) => {
-    console.log("payment success", id);
+    // console.log("payment success", id);
     const { data } = await axiosCommon.delete(`/approveWithdraw/${id}`);
-    console.log(data.userCoinsUpdate);
+    // console.log(data.userCoinsUpdate);
     if (data.userCoinsUpdate.modifiedCount > 0) {
       refetch();
       toast.success("delete data form database and cut coins user ");

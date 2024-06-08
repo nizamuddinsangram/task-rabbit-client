@@ -12,19 +12,19 @@ const ManageUsers = () => {
     },
   });
   const handleRemoveUser = async (id) => {
-    console.log("remove user", id);
+    // console.log("remove user", id);
     const { data } = await axiosCommon.delete(`/worker/${id}`);
-    console.log(data);
+    // console.log(data);
     if (data.deletedCount > 0) {
       toast.success("delete user");
       refetch();
     }
   };
   const handleRoleChange = async (id, e) => {
-    console.log("role change", id);
+    // console.log("role change", id);
     try {
       const newRole = e.target.value;
-      console.log(newRole);
+      // console.log(newRole);
       const { data } = await axiosCommon.patch(`/worker/${id}`, {
         role: newRole,
       });

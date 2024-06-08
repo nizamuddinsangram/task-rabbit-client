@@ -5,7 +5,7 @@ import useAxiosCommon from "../../../hooks/useAxiosCommon";
 const MySubmissions = () => {
   const { user, loading } = useAuth();
   const axiosCommon = useAxiosCommon();
-  const { data: mySubmissions } = useQuery({
+  const { data: mySubmissions = [] } = useQuery({
     queryKey: ["my-submissions", user?.email],
     queryFn: async () => {
       const { data } = await axiosCommon(`/submission/${user?.email}`);
@@ -13,7 +13,7 @@ const MySubmissions = () => {
     },
     enabled: !loading || !!user?.email,
   });
-  console.log(mySubmissions);
+  // console.log(mySubmissions);
   return (
     <>
       <div className="container mx-auto p-8">

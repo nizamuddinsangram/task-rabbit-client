@@ -45,31 +45,59 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "workerHome",
-        element: <WorkerHome />,
+        element: (
+          <PrivateRoute>
+            <WorkerHome />
+          </PrivateRoute>
+        ),
       },
       {
         path: "taskList",
-        element: <TaskList />,
+        element: (
+          <PrivateRoute>
+            <TaskList />
+          </PrivateRoute>
+        ),
       },
       {
         path: "mySubmission",
-        element: <MySubmissions />,
+        element: (
+          <PrivateRoute>
+            <MySubmissions />
+          </PrivateRoute>
+        ),
       },
       {
         path: "taskCreator",
-        element: <TaskCreatorHome />,
+        element: (
+          <PrivateRoute>
+            <TaskCreatorHome />
+          </PrivateRoute>
+        ),
       },
       {
         path: "addNewTask",
-        element: <AddNewTasks />,
+        element: (
+          <PrivateRoute>
+            <AddNewTasks />
+          </PrivateRoute>
+        ),
       },
       {
         path: "myTasks",
-        element: <MyTasks />,
+        element: (
+          <PrivateRoute>
+            <MyTasks />
+          </PrivateRoute>
+        ),
       },
       {
         path: "adminHome",
@@ -83,35 +111,71 @@ const router = createBrowserRouter([
       },
       {
         path: "manageUsers",
-        element: <ManageUsers />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageTasks",
-        element: <ManageTask />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageTask />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "myTaskUpdate/:taskId",
-        element: <MyTaskUpdate />,
+        element: (
+          <PrivateRoute>
+            <MyTaskUpdate />
+          </PrivateRoute>
+        ),
       },
       {
         path: "purchaseCoin",
-        element: <PurchaseCoin />,
+        element: (
+          <PrivateRoute>
+            <PurchaseCoin />
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment/:amount",
-        element: <PaymentPage />,
+        element: (
+          <PrivateRoute>
+            <PaymentPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "paymentHistory",
-        element: <PaymentHistory />,
+        element: (
+          <PrivateRoute>
+            <PaymentHistory />
+          </PrivateRoute>
+        ),
       },
       {
         path: "taskDetails/:taskId",
-        element: <WorkerTaskDetails />,
+        element: (
+          <PrivateRoute>
+            <WorkerTaskDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "withdrawals",
-        element: <Withdrawals />,
+        element: (
+          <PrivateRoute>
+            <Withdrawals />
+          </PrivateRoute>
+        ),
       },
     ],
   },
