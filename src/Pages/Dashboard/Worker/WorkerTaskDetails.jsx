@@ -1,4 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import Countdown from "react-countdown";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
@@ -8,6 +10,8 @@ const WorkerTaskDetails = () => {
   const { user } = useAuth();
   const { taskId } = useParams();
   const axiosCommon = useAxiosCommon();
+  const [completionDate, setCompletionDate] = useState(null);
+  // console.log("completionDate", completionDate);
 
   const {
     data: task,
@@ -18,6 +22,7 @@ const WorkerTaskDetails = () => {
     queryKey: ["singleTask", taskId],
     queryFn: async () => {
       const { data } = await axiosCommon(`/singleTask/${taskId}`);
+      setCompletionDate(new Date(data.completion_date));
       return data;
     },
     enabled: !!taskId,
@@ -91,10 +96,18 @@ const WorkerTaskDetails = () => {
                 <strong>Creator Email:</strong>{" "}
                 {task.task_creator.creator_email}
               </p>
+
+              {completionDate && (
+                <div className="text-xl">
+                  <strong>Time Remaining:</strong>{" "}
+                  <Countdown date={Date.now(completionDate) + 10000} />
+                  {/* <Countdown date={completionDate} /> */}
+                </div>
+              )}
             </div>
             <div className="flex justify-center items-center">
               <img
-                src={task.task_image_url}
+                src={task.image_url}
                 alt={task.task_title}
                 className="rounded-lg shadow-md max-h-80 object-cover"
               />

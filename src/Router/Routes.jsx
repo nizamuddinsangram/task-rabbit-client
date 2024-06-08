@@ -62,16 +62,13 @@ const router = createBrowserRouter([
       },
       {
         index: true,
-        element: <DashboardHome />,
+        element: (
+          <PrivateRoute>
+            <DashboardHome />
+          </PrivateRoute>
+        ),
       },
-      // {
-      //   index: true,
-      //   element: (
-      //     <PrivateRoute>
-      //       <WorkerHome />
-      //     </PrivateRoute>
-      //   ),
-      // },
+
       {
         path: "taskList",
         element: (
@@ -122,16 +119,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      // {
-      //   index: true,
-      //   element: (
-      //     <PrivateRoute>
-      //       <AdminRoute>
-      //         <AdminHome />
-      //       </AdminRoute>
-      //     </PrivateRoute>
-      //   ),
-      // },
+
       {
         path: "manageUsers",
         element: (
