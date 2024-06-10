@@ -8,7 +8,7 @@ import useRole from "../../../hooks/useRole";
 const Withdrawals = () => {
   const { user } = useAuth();
   // const axiosCommon = useAxiosCommon();
-  const axiosSecure = useAxiosSecure;
+  const axiosSecure = useAxiosSecure();
   const [coinsToWithdraw, setCoinsToWithdraw] = useState("");
   const [withdrawAmount, setWithdrawAmount] = useState(0);
   const [data, refetch] = useRole();
