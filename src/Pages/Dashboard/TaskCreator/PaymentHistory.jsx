@@ -27,8 +27,8 @@ const PaymentHistory = () => {
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>id</th>
+              <th>Dolar</th>
             </tr>
           </thead>
           <tbody>

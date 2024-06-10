@@ -64,10 +64,10 @@ const MyTasks = () => {
             {/* head */}
             <thead>
               <tr>
-                <th>Name</th>
+                <th>image</th>
                 <th>Title</th>
-                <th>Favorite Color</th>
-                <th></th>
+                <th>Action</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>

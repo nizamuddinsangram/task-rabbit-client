@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosCommon = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "https://task-rabbit-server.vercel.app",
 });
 
 const useAxiosCommon = () => {

@@ -1,3 +1,4 @@
+import { FaEdit, FaTrash } from "react-icons/fa"; // Importing icons from react-icons
 import { Link } from "react-router-dom";
 
 const AddNewTasksRow = ({ task, handleDelete }) => {
@@ -21,7 +22,7 @@ const AddNewTasksRow = ({ task, handleDelete }) => {
           to={`/dashboard/myTaskUpdate/${task?._id}`}
           className="btn btn-sm"
         >
-          Update
+          <FaEdit /> Update
         </Link>
       </td>
       <th>
@@ -29,7 +30,7 @@ const AddNewTasksRow = ({ task, handleDelete }) => {
           onClick={() => handleDelete(task?._id)}
           className="btn btn-ghost btn-xs"
         >
-          Delete
+          <FaTrash /> Delete
         </button>
       </th>
     </tr>
