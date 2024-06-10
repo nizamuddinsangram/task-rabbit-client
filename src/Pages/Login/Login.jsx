@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
@@ -6,7 +5,9 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import img from "../../assets/login/task-rabbit-login.jpg";
 import useAuth from "../../hooks/useAuth";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 const Login = () => {
+  const axiosCommon = useAxiosCommon();
   const { signIn, googleSignIn, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -49,14 +50,16 @@ const Login = () => {
         image_url: user.photoURL,
       };
       // console.log(savedUser);
-      const { data } = await axios.post(
-        "https://task-rabbit-server.vercel.app/google-login",
-        savedUser
-      );
+      const { data } = await axiosCommon.post("/google-login", savedUser);
       // console.log(data);
+      console.log(data);
+      if (data) {
+        toast.success("Google signed in successfully");
+      }
       // navigate(location.state ? location.state : "/");
     } catch (err) {
       console.log(err);
+      toast.error("google login failed");
     }
     setLoading(false);
   };

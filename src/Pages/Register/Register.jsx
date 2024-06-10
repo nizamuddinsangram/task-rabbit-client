@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
@@ -7,8 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../Provider/AuthProvider";
 import img from "../../assets/login/task-rabbit-login.jpg";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { imageUpload } from "../../imageBB/ImageBB";
 const Register = () => {
+  const axiosCommon = useAxiosCommon();
   const { createUser, googleSignIn, updateUserProfile, loading, setLoading } =
     useContext(AuthContext);
   const navigate = useNavigate();
@@ -30,10 +31,7 @@ const Register = () => {
         role,
         image_url,
       };
-      const { data } = await axios.post(
-        "https://task-rabbit-server.vercel.app/register",
-        user
-      );
+      const { data } = await axiosCommon.post("/register", user);
       // console.log(data);
       // user registration
       await createUser(email, password);
@@ -56,10 +54,7 @@ const Register = () => {
         image_url: user.photoURL,
       };
       // console.log(savedUser);
-      const { data } = await axios.post(
-        "https://task-rabbit-server.vercel.app/google-login",
-        savedUser
-      );
+      const { data } = await axiosCommon.post("/google-login", savedUser);
       if (data.message) {
         toast.success("registered successfully");
       }
