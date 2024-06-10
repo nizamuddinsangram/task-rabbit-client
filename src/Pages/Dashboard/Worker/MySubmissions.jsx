@@ -1,14 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const MySubmissions = () => {
   const { user, loading } = useAuth();
-  const axiosCommon = useAxiosCommon();
+  // const axiosCommon = useAxiosCommon();
+  const axiosSecure = useAxiosSecure();
   const { data: mySubmissions = [] } = useQuery({
     queryKey: ["my-submissions", user?.email],
     queryFn: async () => {
-      const { data } = await axiosCommon(`/submission/${user?.email}`);
+      const { data } = await axiosSecure(`/submission/${user?.email}`);
       return data;
     },
     enabled: !loading || !!user?.email,
@@ -16,6 +18,9 @@ const MySubmissions = () => {
   // console.log(mySubmissions);
   return (
     <>
+      <Helmet>
+        <title>Task Rabbit || My Submissions</title>
+      </Helmet>
       <div className="container mx-auto p-8">
         <h2 className="text-3xl font-semibold mb-4 text-center text-[#005149]">
           My Submissions

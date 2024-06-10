@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -26,6 +27,9 @@ const AdminHome = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>Task-Rabbit || Admin Home</title>
+      </Helmet>
       <AdminHomeStates />
 
       <div className="container mx-auto p-8">

@@ -1,14 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosCommon from "../../../hooks/useAxiosCommon";
-
+// import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import useAxiosSecure from "../../../hooks//useAxiosSecure";
 const WorkerStates = () => {
-  const axiosCommon = useAxiosCommon();
+  // const axiosCommon = useAxiosCommon();
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { data: taskCreatorState = [] } = useQuery({
     queryKey: ["taskState", user?.email],
     queryFn: async () => {
-      const taskState = await axiosCommon(`/workerStates?email=${user?.email}`);
+      const taskState = await axiosSecure(`/workerStates?email=${user?.email}`);
       return taskState.data;
     },
   });

@@ -1,19 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
-import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageUsers = () => {
-  const axiosCommon = useAxiosCommon();
+  // const axiosCommon = useAxiosCommon();
+  const axiosSecure = useAxiosSecure();
   const { data: managesUsers, refetch } = useQuery({
     queryKey: ["manageUsers"],
     queryFn: async () => {
-      const { data } = await axiosCommon(`/worker`);
+      const { data } = await axiosSecure(`/worker`);
       return data;
     },
   });
   const handleRemoveUser = async (id) => {
     // console.log("remove user", id);
-    const { data } = await axiosCommon.delete(`/worker/${id}`);
+    const { data } = await axiosSecure.delete(`/worker/${id}`);
     // console.log(data);
     if (data.deletedCount > 0) {
       toast.success("delete user");
@@ -25,7 +27,7 @@ const ManageUsers = () => {
     try {
       const newRole = e.target.value;
       // console.log(newRole);
-      const { data } = await axiosCommon.patch(`/worker/${id}`, {
+      const { data } = await axiosSecure.patch(`/worker/${id}`, {
         role: newRole,
       });
       if (data.modifiedCount > 0) {
@@ -39,6 +41,9 @@ const ManageUsers = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>Task-Rabbit || Manage Users</title>
+      </Helmet>
       <div className="container mx-auto p-8">
         <h2
           className="text-4xl font-bold mb-8 text-center"

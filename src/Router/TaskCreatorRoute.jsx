@@ -6,9 +6,9 @@ const TaskCreatorRoute = ({ children }) => {
   const location = useLocation();
   const { user, loading } = useAuth();
   const [data, , isLoading] = useRole();
-  console.log(data);
+  // console.log(data);
   const role = data?.role === "TaskCreator";
-  console.log("TaskCreator role", role);
+  // console.log("TaskCreator role", role);
   if (loading || isLoading) {
     return <p>......loading.....</p>;
   }

@@ -1,9 +1,10 @@
 import { FaCoins } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useRole from "../../hooks/useRole";
 
 const Navbar = () => {
-  const data = [];
+  const [data] = useRole();
 
   const { user, logOut } = useAuth();
   const handleLogout = async () => {
@@ -49,7 +50,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       isActive
                         ? "bg-[#FFBF00] text-[#005149] rounded-md px-2 py-1"
-                        : "hover:bg-[#FFC107] hover:text-[#005149] rounded-md px-2 py-1 transition-colors"
+                        : "btn btn-sm bg-[#005149] text-white rounded-lg hover:bg-[#FFC107] transition-colors"
                     }
                   >
                     Login
@@ -61,7 +62,7 @@ const Navbar = () => {
                     className={({ isActive }) =>
                       isActive
                         ? "bg-[#FFBF00] text-[#005149] rounded-md px-2 py-1"
-                        : "hover:bg-[#FFC107] hover:text-[#005149] rounded-md px-2 py-1 transition-colors"
+                        : "btn btn-sm bg-[#005149] text-white rounded-lg hover:bg-[#FFC107] transition-colors"
                     }
                   >
                     Register

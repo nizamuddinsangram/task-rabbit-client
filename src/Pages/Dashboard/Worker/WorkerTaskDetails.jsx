@@ -1,15 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import Countdown from "react-countdown";
+import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const WorkerTaskDetails = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { taskId } = useParams();
-  const axiosCommon = useAxiosCommon();
+  // const axiosCommon = useAxiosCommon();
   const [completionDate, setCompletionDate] = useState(null);
   // console.log("completionDate", completionDate);
 
@@ -21,7 +23,7 @@ const WorkerTaskDetails = () => {
   } = useQuery({
     queryKey: ["singleTask", taskId],
     queryFn: async () => {
-      const { data } = await axiosCommon(`/singleTask/${taskId}`);
+      const { data } = await axiosSecure(`/singleTask/${taskId}`);
       setCompletionDate(new Date(data.completion_date));
       return data;
     },
@@ -61,7 +63,7 @@ const WorkerTaskDetails = () => {
 
     // console.log(taskSubmit);
     try {
-      const submission = await axiosCommon.post("/submission", taskSubmit);
+      const submission = await axiosSecure.post("/submission", taskSubmit);
       // console.log(submission.data);
       if (submission.data.insertedId) {
         toast.success("Add a new submission");
@@ -73,6 +75,9 @@ const WorkerTaskDetails = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>Task Rabbit || Task Details</title>
+      </Helmet>
       <div className="container mx-auto p-6">
         <div className="bg-white shadow-lg rounded-lg p-8 mb-8">
           <h2 className="text-3xl font-bold mb-6 text-gray-800">

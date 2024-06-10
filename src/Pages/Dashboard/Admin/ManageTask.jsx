@@ -1,19 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import { FaEye, FaTrashAlt } from "react-icons/fa";
-import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ManageTask = () => {
   const axiosSecure = useAxiosSecure();
   const [selectedTask, setSelectedTask] = useState(null);
 
-  const axiosCommon = useAxiosCommon();
+  // const axiosCommon = useAxiosCommon();
   const { data: taskManages, refetch } = useQuery({
     queryKey: ["manageTask"],
     queryFn: async () => {
-      const { data } = await axiosCommon(`/adminTasks`);
+      const { data } = await axiosSecure(`/adminTasks`);
       return data;
     },
   });
@@ -35,6 +35,9 @@ const ManageTask = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Task-Rabbit || Manage Task</title>
+      </Helmet>
       <div className="p-6 bg-gray-50 min-h-screen">
         <h1 className="text-3xl font-bold mb-6 text-[#005149]">Manage Tasks</h1>
         <div className="overflow-x-auto">

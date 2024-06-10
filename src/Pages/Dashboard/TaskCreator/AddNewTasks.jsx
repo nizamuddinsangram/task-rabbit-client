@@ -1,13 +1,16 @@
 import toast from "react-hot-toast";
-import { imageUpload } from "../../../../public/utils";
+// import { imageUpload } from "../../../../public/utils";
+import { Helmet } from "react-helmet-async";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useRole from "../../../hooks/useRole";
+import { imageUpload } from "../../../imageBB/ImageBB";
 
 const AddNewTasks = () => {
   const [data, refetch] = useRole();
   // console.log("add new taska component", data.coins);
-  const axiosCommon = useAxiosCommon();
+  // const axiosCommon = useAxiosCommon();
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,7 +50,7 @@ const AddNewTasks = () => {
         total_cost,
       };
       //test code
-      const test = await axiosCommon.post(`/tasks/${user?.email}`, addTasks);
+      const test = await axiosSecure.post(`/tasks/${user?.email}`, addTasks);
       if (test.data.insertDoc.insertedId) {
         refetch();
         toast.success("added successfully");
@@ -68,6 +71,9 @@ const AddNewTasks = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>Task Rabbit || Add New Tasks</title>
+      </Helmet>
       <form
         onSubmit={handleSubmit}
         className="max-w-2xl mx-auto p-8 bg-white shadow-lg rounded-lg lg:max-w-4xl"

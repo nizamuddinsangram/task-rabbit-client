@@ -1,14 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import Modal from "../../../../components/Dashboard/TaskCreator/Modal";
 import useAuth from "../../../../hooks/useAuth";
-import useAxiosCommon from "../../../../hooks/useAxiosCommon";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import TaskCreatorState from "./TaskCreatorState";
 
 const TaskCreatorHome = () => {
   const { user, loading } = useAuth();
-  const axiosCommon = useAxiosCommon();
+  const axiosSecure = useAxiosSecure();
+  // const axiosCommon = useAxiosCommon();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSubmission, setSelectedSubmission] = useState(null);
   const {
@@ -18,7 +20,7 @@ const TaskCreatorHome = () => {
   } = useQuery({
     queryKey: ["taskReview"],
     queryFn: async () => {
-      const { data } = await axiosCommon(`/pendingSubmissions/${user?.email}`);
+      const { data } = await axiosSecure(`/pendingSubmissions/${user?.email}`);
       // console.log(data);
       return data;
     },
@@ -47,7 +49,7 @@ const TaskCreatorHome = () => {
       task_creator_name,
     };
     try {
-      const approve = await axiosCommon.patch(`/approve/${id}`, approveData);
+      const approve = await axiosSecure.patch(`/approve/${id}`, approveData);
       // console.log(approve.data);
       if (approve.data.modifiedCount > 0) {
         refetch();
@@ -72,7 +74,7 @@ const TaskCreatorHome = () => {
       task_creator_name,
     };
     // console.log("reject");
-    const { data } = await axiosCommon.patch(`/approve/${id}`, approveData);
+    const { data } = await axiosSecure.patch(`/approve/${id}`, approveData);
     // console.log(data);
     if (data.modifiedCount > 0) {
       refetch();
@@ -94,6 +96,9 @@ const TaskCreatorHome = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Task Rabbit || Task Creator Home</title>
+      </Helmet>
       <TaskCreatorState />
       <div className="container mx-auto p-8">
         <h2 className="text-3xl font-semibold mb-4 text-center text-[#005149]">

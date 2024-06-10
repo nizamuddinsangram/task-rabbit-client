@@ -1,21 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import WorkerStates from "./WorkerStates";
 
 const WorkerHome = () => {
-  const axiosCommon = useAxiosCommon();
+  // const axiosCommon = useAxiosCommon();
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { data: approved } = useQuery({
     queryKey: ["approved", user?.email],
     queryFn: async () => {
-      const { data } = await axiosCommon(`/submissionApprove/${user?.email}`);
+      const { data } = await axiosSecure(`/submissionApprove/${user?.email}`);
       return data;
     },
   });
   // console.log(approved);
   return (
     <>
+      <Helmet>
+        <title>Task Rabbit || Worker Home</title>
+      </Helmet>
       <WorkerStates />
 
       <div className="container mx-auto p-8">

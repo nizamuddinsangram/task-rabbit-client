@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useRole from "../../../hooks/useRole";
 
 const CheckoutForm = ({ amount }) => {
@@ -13,13 +13,14 @@ const CheckoutForm = ({ amount }) => {
   const [transactionId, setTransactionId] = useState("");
   const stripe = useStripe();
   const elements = useElements();
-  const axiosCommon = useAxiosCommon();
+  // const axiosCommon = useAxiosCommon();
+  const axiosSecure = useAxiosSecure();
   //   const totalPrice = 110;
   //find payment intent when this page loaded
   useEffect(() => {
     if (amount > 0) {
       const getData = async () => {
-        const { data } = await axiosCommon.post("/create-payment-intent", {
+        const { data } = await axiosSecure.post("/create-payment-intent", {
           price: amount,
         });
         // setClientSecret(data.clientSecret);
@@ -29,7 +30,7 @@ const CheckoutForm = ({ amount }) => {
       };
       getData();
     }
-  }, [axiosCommon, amount]);
+  }, [axiosSecure, amount]);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -76,7 +77,7 @@ const CheckoutForm = ({ amount }) => {
         // console.log("taka keta nise", paymentIntent.id);
         setTransactionId(paymentIntent.id);
         //post request start
-        const { data } = await axiosCommon.post("/payment-info", {
+        const { data } = await axiosSecure.post("/payment-info", {
           email: user?.email,
           name: user?.displayName,
           amount: amount,
