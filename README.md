@@ -1,61 +1,59 @@
-##Micro Tasking and Earning Platform
-Welcome to the Micro Tasking and Earning Platform! This platform allows users to complete small tasks to earn rewards, create and manage tasks, and administer the overall system.
+# Micro Tasking and Earning Platform
 
-**Admin Credentials
-Username: admin
-Password: admin123
-**Live Site URL
-Micro Tasking and Earning Platform
+Welcome to the Micro Tasking and Earning Platform! This platform enables users to complete small tasks for rewards, create and manage tasks, and oversee the system.
 
-\*\*Key Features
-1.User Roles: The platform supports three distinct roles - Worker, Task-Creator, and Admin.
+- **Live Site URL:** [Micro Tasking and Earning Platform](#) *(https://taskrabbit-525e1.web.app)*
+- **server Repository:** [Micro Tasking Editor](#) *(https://github.com/programming-hero-web-course1/b9a12-server-side-nizamuddinsangram)*
 
-Worker: Users who complete tasks to earn rewards.
-Task-Creator: Users who create and manage tasks.
-Admin: Users who oversee and administer the platform.
-2.Task Management:
+## Key Features
 
-View Tasks: Workers can view all available tasks along with detailed descriptions and requirements.
-Create Tasks: Task-Creators can create tasks with specific instructions, deadlines, and reward amounts.
-3.Task Submission and Review:
+1. **User Roles:**
+   - **Worker:** Users who complete tasks to earn rewards.
+   - **Task-Creator:** Users who create and manage tasks.
+   - **Admin:** Users who oversee and administer the platform.
 
-Submit Tasks: Workers can submit completed tasks for review.
-Review Tasks: Task-Creators can review task submissions, approve or reject them accordingly.
-4.Rewards and Transactions:
+2. **Task Management:**
+   - **View Tasks:** Workers can view available tasks with detailed descriptions and requirements.
+   - **Create Tasks:** Task-Creators can create tasks with instructions, deadlines, and rewards.
 
-Earn Coins: Workers earn coins upon approval of their completed tasks.
-Withdraw Coins: Workers can withdraw their earned coins.
-Purchase Coins: Task-Creators can purchase coins to facilitate task payments.
-Automatic Payments: Task-Creators can pay workers automatically using platform coins.
-5.Notifications:
+3. **Task Submission and Review:**
+   - **Submit Tasks:** Workers submit completed tasks for review.
+   - **Review Tasks:** Task-Creators review submissions and approve or reject them.
 
-Earnings and Withdrawals: Workers receive notifications regarding their earnings and withdrawals.
-6.Reporting and Administration:
+4. **Rewards and Transactions:**
+   - **Earn Coins:** Workers earn coins upon task approval.
+   - **Withdraw Coins:** Workers can withdraw earned coins.
+   - **Purchase Coins:** Task-Creators can purchase coins for task payments.
+   - **Automatic Payments:** Task-Creators automate payments using platform coins.
 
-Report Violations: Task-Creators can report workers to Admin for any violations or issues.
-Modify User Roles: Admins can modify user roles as necessary, including granting Task-Creator status.
-Feedback and Actions: Admins provide feedback on Task-Creator reports and take appropriate actions.
-Manage Platform Integrity: Admins manage platform integrity by deleting tasks, users, or any other system elements as needed.
-9.Security:
+5. **Notifications:**
+   - **Earnings and Withdrawals:** Workers receive notifications about earnings and withdrawals.
 
-Authentication: Secure login for all users.
-Authorization: Role-based access control to ensure users have the appropriate permissions.
-10.User Interface:
+6. **Reporting and Administration:**
+   - **Report Violations:** Task-Creators report issues to Admin.
+   - **Modify User Roles:** Admins adjust user roles as needed.
 
-Responsive Design: User-friendly and responsive design for all devices.
-Task Filters: Easy filtering of tasks based on categories, deadlines, and reward amounts.
-11.Support and Feedback:
+7. **Security:**
+   - **Authentication:** Secure login for all users.
+   - **Authorization:** Role-based access control.
 
-Customer Support: Integrated customer support for user queries and issues.
-Feedback System: Users can provide feedback to improve the platform.
-12.Performance and Scalability:
+8. **User Interface:**
+   - **Responsive Design:** User-friendly design for all devices.
+   - **Task Filters:** Easy task filtering by categories, deadlines, and rewards.
 
-Optimized Performance: Efficient and optimized performance to handle a large number of tasks and users.
-Scalable Infrastructure: Scalable infrastructure to support future growth and expansion.
-\*\*Installation
+9. **Support and Feedback:**
+   - **Customer Support:** Integrated support for user queries.
+   - **Feedback System:** Users provide feedback to enhance the platform.
+
+10. **Performance and Scalability:**
+    - **Optimized Performance:** Efficient handling of tasks and users.
+    - **Scalable Infrastructure:** Supports future growth.
+
+## Installation
+
 To install and run the platform locally, follow these steps:
 
-Clone the repository.
-Install dependencies using npm install.
-Set up the database and configure environment variables.
-Run the development server using npm start.
+- Clone the repository.
+- Install dependencies using `npm install`.
+- Set up the database and configure environment variables.
+- Run the development server using `npm run dev`.
